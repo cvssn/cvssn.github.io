@@ -23,3 +23,10 @@ article, address, nav, section {
 
     height: 100vh;
 }
+
+h1 {
+    font-family: 'Walter Turncoat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
