@@ -1,0 +1,21 @@
+* {
+    height: 100%;
+}
+
+body {
+    background-image: linear-gradient(to bottom, rgb(68, 68, 68), black);
+}
+
+h1 {
+    font-family: 'Walter Turncoat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+
+    color: #fff;
+}
+
+.center {
+    justify-content: center;
+    text-align: center;
+}
