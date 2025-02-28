@@ -92,10 +92,13 @@
 							i = e(r).toLowerCase();
 						return o.has(i)
 					},
+
 					s = e => {
 						let t;
-						return t = "string" == typeof e ? e.split(";").map((e => e.trim())) : e, t.filter((e => !n(e)))
+
+						return t = "string" == typeof e ? e.split(";").map((e => e.trim())) : e, t.filter((e => !n(e)));
 					},
+
 					l = "tbReady",
 					a = "security_overrideGlobals",
 					{
