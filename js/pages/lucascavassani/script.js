@@ -15,20 +15,7 @@ const contentBlocks = [
         <img src="https://cvssn.github.io/img/archive/00007.jpg" alt="lucas cavassani">
 
         <div class="text">
-            i am based in brazil <br>
-            i don't have a cv <br>
-            i also don't check my emails <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            based in brazil <br>
             you can reach me on instagram, my username is cavassxni
         </div>
     </div>
