@@ -13,6 +13,10 @@ body {
 	line-height: 2rem;
 }
 
+article {
+    user-select: none;
+}
+
 article,
 address,
 nav,
