@@ -26,8 +26,8 @@
         </style>
 
 		<!-- polyfills legados -->
-		<script nomodule="" src="https://static.parastorage.com/unpkg/core-js-bundle@3.2.1/minified.js"></script>
-		<script nomodule="" src="https://static.parastorage.com/unpkg/focus-within-polyfill@5.0.9/dist/focus-within-polyfill.js"></script>
+		<script nomodule="" src="js/unpkg/core-js.js"></script>
+		<script nomodule="" src="js/unpkg/focus-within-polyfill.js"></script>
 
 		<!-- polyfills da api de desempenho -->
 		<script>
@@ -101,22 +101,27 @@
 
 					l = "tbReady",
 					a = "security_overrideGlobals",
+
 					{
 						isExcludedFromSecurityExperiments: c,
 						experiments: d,
 						siteFeaturesConfigs: u,
 						accessTokensUrl: b
 					} = window.viewerModel,
+
 					g = b,
 					m = {},
+
 					h = (() => {
 						const e = document.cookie.split(";").map((e => e.trim())).filter((e => e?.startsWith(t)))[0]?.split("=")[1];
+
 						return (() => {
 							const e = `domain=${location.hostname};`,
 								t = i(),
 								o = i(e);
-							r.set.call(document, t), r.set.call(document, o)
-						})(), e
+
+							r.set.call(document, t), r.set.call(document, o);
+						})(), e;
 					})();
 
 				if (h && (m["client-binding"] = h), d["specs.thunderbolt.hardenFetchAndXHR"] && !c) {
@@ -131,7 +136,7 @@
 							window.tb.init({
 								fetch: p,
 								fetchHeaders: m
-							})
+							});
 						} catch (e) {
 							const o = new Error("TB003");
 
@@ -145,9 +150,9 @@
 									errorType: a,
 									eventString: o.message
 								}
-							}), window?.viewerModel?.mode.debug && console.error(e)
+							}), window?.viewerModel?.mode.debug && console.error(e);
 						} finally {
-							removeEventListener(l, f), p = fetch
+							removeEventListener(l, f), p = fetch;
 						}
 					}
 					
@@ -191,6 +196,7 @@
 							const e = await t.call(void 0);
 							return s(e)
 						},
+
 						enumerable: !0,
 						configurable: !1
 					}), Object.defineProperty(globalThis.CookieStore.prototype, "set", {
@@ -198,6 +204,7 @@
 							const t = 1 === e.length ? e[0].name : e[0];
 							if (!n(t)) return r.call(void 0, ...e)
 						},
+
 						enumerable: !0,
 						configurable: !1
 					}), Object.defineProperty(globalThis.CookieStore.prototype, "delete", {
@@ -205,10 +212,11 @@
 							const t = 1 === e.length ? e[0].name : e[0];
 							if (!n(t)) return i.call(void 0, ...e)
 						},
+
 						enumerable: !0,
 						configurable: !1
 					})
-				})()
+				})();
 			})();
 
 			// # sourceMappingURL=https://static.parastorage.com/services/wix-thunderbolt/dist/handleAccessTokens.inline.4300406d.bundle.min.js.map
