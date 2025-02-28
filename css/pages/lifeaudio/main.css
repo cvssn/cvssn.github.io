@@ -54,12 +54,12 @@ script {
 #atlas > section,
 #doce-e section,
 #ep-t > section,
-#manifiesto article {
+#maniphesto article {
     flex-direction: column;
 }
 
 #atlas > section:last-of-type,
-#manifiesto > article {
+#maniphesto > article {
     height: auto;
 }
 
@@ -67,7 +67,7 @@ script {
     justify-content: center;
 }
 
-#manifiesto > article {
+#maniphesto > article {
     gap: 0;
 }
 
