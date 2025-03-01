@@ -1,7 +1,7 @@
 (() => {
     "use strict";
 
-    const e = "Tag Manager: ", t = function() {
+    const e = "gerenciador de tag: ", t = function() {
         let e = !1;
 
         try {
@@ -23,7 +23,7 @@
         try {
             t = JSON.parse(e);
         } catch (e) {
-            n("Parse error in string"), n(e.message);
+            n("erro de análise na string"), n(e.message);
         }
         
         return t;
@@ -129,22 +129,25 @@
                 !t && o.tag.appInfo && o.embeddedNodes.forEach((r => {
                     var i;
 
-                    t || r === e && (n = (null == (i = o.tag) || null == (i = i.appInfo) ? void 0 : i.id) || "", t = !0)
+                    t || r === e && (n = (null == (i = o.tag) || null == (i = i.appInfo) ? void 0 : i.id) || "", t = !0);
                 }))
-            })), !n) {
+        })), !n) {
             const t = function(e) {
-                    let t = "Script not identified";
+                    let t = "script não identificado";
+
                     if (e instanceof HTMLScriptElement) {
                         const {
                             type: n,
                             src: o
                         } = e;
-                        t = `type: ${n||"No Type Found"} src: ${o||"No URL Found"}`
+
+                        t = `tipo: ${n||"nenhum tipo encontrado"} src: ${o||"nenhum url encontrado"}`;
                     }
-                    return t
+
+                    return t;
                 }(e),
 
-                o = `App not found for script ${t}, errorId: 404C`;
+                o = `aplicativo não encontrado para script ${t}, id do erro: 404c`;
 
             console.error(o), n = new Error(o);
         }
@@ -204,9 +207,11 @@
             moduleScriptConfig: {
                 node: {
                     tag: "SCRIPT",
+
                     attributes: {
                         type: "module"
                     },
+
                     content: r
                 },
 
@@ -239,7 +244,9 @@
             void 0 === t && (t = "");
             if (o && "module" === e.getAttribute("type") && "true" === e.getAttribute("accesstoken")) {
                 let r = e.src;
+
                 !r && t && (r = J(t)), e = null;
+
                 const {
                     helperScriptConfig: i,
                     moduleScriptConfig: c
@@ -247,14 +254,18 @@
                     const e = _(c.node, c.callbacks, o);
                     document.head.appendChild(e)
                 };
+
                 return _(i, {
                     onload: a,
                     onerror: null == n ? void 0 : n.onerror
                 }, o)
             }! function(e, t, n) {
                 void 0 === t && (t = "");
+
                 const o = t && !!t.trim();
+
                 o && (e.src = J(t));
+
                 e.addEventListener("load", (function() {
                     H(n && n.onload, null)
                 }), !1), e.addEventListener("error", (function() {
@@ -285,9 +296,11 @@
     function Y(e) {
         const t = [],
             n = document.createElement("DIV");
+
         return n.innerHTML = e, Array.prototype.forEach.call(n.childNodes, (e => {
             const n = z(e);
-            t.push(n)
+
+            t.push(n);
         })), t
     }
 
@@ -317,21 +330,29 @@
                 return e.filter((e => function(e, t) {
                     return !(t.id && (n = e, null != (o = n.tag) && null != (o = o.pages) && o.length)) || ((e, t) => {
                         var n;
-                        return (null == (n = e.tag) || null == (n = n.pages) ? void 0 : n.includes(t.id || "")) || !1
+
+                        return (null == (n = e.tag) || null == (n = n.pages) ? void 0 : n.includes(t.id || "")) || !1;
                     })(e, t);
-                    var n, o
+
+                    var n, o;
                 }(e, t)))
             }(o, t) : o,
+
             c = r.map((e => e.tag));
         P(c), l(g, window, c), r.forEach((e => {
             var t;
+
             const n = null == (t = e.tag.appInfo) ? void 0 : t.id;
+
             e.embeddedNodes = e.embeddedNodes || [];
+
             const o = e.tag,
                 r = Y(o.content),
                 i = o.position && o.position.toLowerCase() !== V.HEAD ? document.body : document.head;
+
             ! function(e, t, n, o, r, i) {
                 let c = 0;
+
                 const a = () => {
                         c -= 1, c >= 0 && H(t.onload, {})
                     },
@@ -359,16 +380,20 @@
     function X(e, t, n, o) {
         const r = o && o.headers || {},
             i = o && o.query || {};
+
         r["content-type"] = r["content-type"] || "application/json";
+
         const c = new XMLHttpRequest,
             a = o && o.postBody ? "POST" : "GET",
             s = `${e}${function(e){let t="";"object"==typeof e&&Object.keys(e).forEach((n=>{if(void 0!==e[n]){const o=encodeURIComponent(e[n]);t+=`${encodeURIComponent(n)}=${o}&`}}));return t=t?t.substr(0,t.length-1):"",t?` ? $ {
                 t
             }
         `:""}(i)}`;
+
         c.open(a, s, !0), c.onreadystatechange = () => {
             if (4 === c.readyState) {
                 const e = c.status;
+
                 e < 200 || e >= 300 ? H(n, {
                     status: e,
                     responseText: c.responseText
@@ -381,8 +406,10 @@
 
     function G(e, t) {
         void 0 === t && (t = location.search);
+
         let n = t.split(`${e}=`)[1];
-        return n = n ? decodeURIComponent(n.split("&")[0]) : void 0, n
+
+        return n = n ? decodeURIComponent(n.split("&")[0]) : void 0, n;
     }
 
     function K(e, t) {
@@ -393,6 +420,7 @@
             } = t;
         if (c.errors && c.errors.length > 0 && n(JSON.stringify(c.errors)), c.config) {
             const e = window.consentPolicyManager;
+
             (u = c.config.consentPolicy) && "object" == typeof u && (v = [...v, ...N(u)]), s && e && e.init({
                 consentPolicy: c.config.consentPolicy
             }), "object" != typeof(d = c.config) || Array.isArray(d) || (I = {
@@ -400,16 +428,21 @@
                 ...d
             }, l(h, window, r(I)))
         }
+
         var d, u, f, g;
+
         if (c.tags) {
             f = c.tags, i(null == (g = I) ? void 0 : g.experiments, "specs.tagManager.ReadLoadOnceFromTag") ? f.forEach((e => {
                 var t;
+
                 const n = e.loadOnce || (null == (t = e.content) ? void 0 : t.includes('load-once="true"'));
+
                 E.push({
                     tag: {
                         ...e,
                         loadOnce: n
                     },
+
                     embeddedNodes: null
                 })
             })) : f.forEach((e => {
@@ -418,10 +451,12 @@
                     embeddedNodes: null
                 })
             }));
+
             const e = {
                 id: a
             };
-            W(A(), e, c.config.experiments || {})
+
+            W(A(), e, c.config.experiments || {});
         }
     }
 
@@ -440,23 +475,29 @@
         } = e, s = G("site-override"), u = G("apps-override"), l = Q(r, t, i), f = window.consentPolicyManager, g = !i && f ? f._getConsentPolicyHeader() : {}, p = function(e) {
             const t = e.wixEmbedsAPI,
                 n = t && t.getCurrentPageInfo;
+
             return "function" == typeof n ? n() : {}
         }(window), m = G("omit"), h = await async function() {
             let e;
+
             const t = k();
+
             if ("function" == typeof t) try {
                 e = await t()
             } catch (e) {}
+
             e || (e = H(window.wixEmbedsAPI.getAppToken, d));
-            return e
+
+            return e;
         }();
+
         h && (g.authorization = h), X(l, (e => {
             K(e, {
                 initConsentPolicyManager: !a && !!i,
                 currentPageID: p.id
             })
         }), (e => {
-            n(`Error loading site tags at ${l}`), n(e.message)
+            n(`erro ao carregar tags do site em ${l}`), n(e.message)
         }), {
             query: {
                 wixSite: !!i,
@@ -468,6 +509,7 @@
                 siteOverrideId: s,
                 appsOverrideId: u
             },
+
             headers: g
         })
     }
@@ -480,12 +522,14 @@
                 }))
             })), e.embeddedNodes = null)
         }));
+
         W(A(), e, C().experiments || {})
     }
 
     function te(e) {
         if (e && e.detail && e.detail.policy) {
             const t = N(e.detail.policy);
+
             t.length && Z({
                 baseUrl: window.wixEmbedsAPI.getExternalBaseUrl(),
                 htmlsiteId: window.wixEmbedsAPI.getHtmlSiteId(),
@@ -500,6 +544,7 @@
 
         function t() {
             const t = e.wixEmbedsAPI;
+
             ! function() {
                 const t = Object.freeze({
                     getLoadedTags: L,
@@ -508,6 +553,7 @@
                     getConfig: C,
                     getAppId: D
                 });
+
                 Object.defineProperty(e, "wixTagManager", {
                     value: t,
                     writable: !1,
@@ -515,6 +561,7 @@
                     enumerable: !0
                 }), l(f, window, window.wixTagManager)
             }(),
+
             function(e) {
                 if ("function" == typeof e.getAccessTokenFunction) {
                     j();
@@ -535,4 +582,4 @@
     }()
 })();
 
-// # sourceMappingURL=siteTags.bundle.min.js.map
+// # sourcemappingurl = sitetags.bundle.min.js.map
