@@ -52,7 +52,7 @@ script {
 }
 
 #atlas > section,
-#doce-e section,
+#twelve-e section,
 #ep-t > section,
 #maniphesto article {
     flex-direction: column;
@@ -63,7 +63,7 @@ script {
     height: auto;
 }
 
-#doce-e > section {
+#twelve-e > section {
     justify-content: center;
 }
 
@@ -190,7 +190,7 @@ tr {
     }
 
     #atlas > section,
-    #doce-e > section,
+    #twelve-e > section,
     #ep-t > section,
     #productos > section,
     #proyectos > section {
@@ -226,7 +226,7 @@ tr {
         height: auto;
     }
 
-    #doce-e > section:first-of-type,
+    #twelve-e > section:first-of-type,
     #ep-t > section:nth-of-type(2) {
         height: auto;
     }

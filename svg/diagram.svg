@@ -72,7 +72,7 @@
     </g>
 
     <g id="textos">
-        <a href="/archangel.html" target="_top">
+        <a href="https://cvssn.github.io/pages/lifeaudio/archangel.html" target="_top">
             <text class="italic" transform="translate(381.25 386.12)">
                 <tspan x="0" y="0">
                     archangel
@@ -80,7 +80,7 @@
             </text>
         </a>
 
-        <a href="/atlas.html" target="_top">
+        <a href="https://cvssn.github.io/pages/lifeaudio/atlas.html" target="_top">
             <text class="italic" transform="translate(249.27 620.38)">
                 <tspan x="0" y="0">
                     atlas
@@ -88,7 +88,7 @@
             </text>
         </a>
 
-        <a href="/products.html" target="_top">
+        <a href="https://cvssn.github.io/pages/lifeaudio/products.html" target="_top">
             <text class="regular" transform="translate(35.59 976.78)">
                 <tspan x="0" y="0">
                     products
@@ -96,7 +96,7 @@
             </text>
         </a>
 
-        <a href="/contact.html" target="_top">
+        <a href="https://cvssn.github.io/pages/lifeaudio/contact.html" target="_top">
             <text class="regular" transform="translate(258.67 1465.74)">
                 <tspan x="0" y="0">
                     contact
@@ -112,7 +112,7 @@
             </text>
         </a>
 
-        <a href="/architecture.html" target="_top">
+        <a href="https://cvssn.github.io/pages/lifeaudio/architecture.html" target="_top">
             <text class="italic" transform="translate(1446.79 1465.74)">
                 <tspan x="0" y="0">
                     architecture
@@ -120,7 +120,7 @@
             </text>
         </a>
 
-        <a href="/projects.html" target="_top">
+        <a href="https://cvssn.github.io/pages/lifeaudio/projects.html" target="_top">
             <text class="regular" transform="translate(1632.26 976.78)">
                 <tspan x="0" y="0">
                     projects
@@ -128,21 +128,27 @@
             </text>
         </a>
 
-        <a href="/12-e.html" target="_top">
+        <a href="https://cvssn.github.io/pages/lifeaudio/12-e.html" target="_top">
             <text class="italic" transform="translate(1546.26 620.38)">
-                <tspan x="0" y="0">12.e</tspan>
+                <tspan x="0" y="0">
+                    12.e
+                </tspan>
             </text>
         </a>
         
-        <a href="/ep-t.html" target="_top">
+        <a href="https://cvssn.github.io/pages/lifeaudio/ep-t.html" target="_top">
             <text class="italic" transform="translate(1312 386.12)">
-                <tspan x="0" y="0">ep.t</tspan>
+                <tspan x="0" y="0">
+                    ep.t
+                </tspan>
             </text>
         </a>
 
-        <a href="/ep-1.html" target="_top">
+        <a href="https://cvssn.github.io/pages/lifeaudio/ep-1.html" target="_top">
             <text class="italic" transform="translate(905.8 268.37)">
-                <tspan x="0" y="0">ep.1</tspan>
+                <tspan x="0" y="0">
+                    ep.1
+                </tspan>
             </text>
         </a>
 
