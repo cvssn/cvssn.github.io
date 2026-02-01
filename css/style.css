@@ -136,3 +136,85 @@ header {
 
     line-height: 1;
 }
+
+.menu-selection nav a:last-child {
+    margin-right: 0;
+}
+
+.menu-selection nav a.active,
+.menu-selection nav a:hover {
+    opacity: 1;
+}
+
+/* handles (quadradinhos nos cantos) */
+.handle {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    background-color: white;
+
+    border: 1px solid #2f80ed;
+
+    z-index: 101;
+}
+
+.handle.top-left {
+    top: -4px;
+    left: -4px;
+}
+
+.handle.top-right {
+    top: -4px;
+    right: -4px;
+}
+
+.handle.bottom-left {
+    bottom: -4px;
+    left: -4px;
+}
+
+.handle.bottom-right {
+    bottom: -4px;
+    right: -4px;
+}
+
+/* sub-título abaixo do header */
+.header-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+
+    color: #2c2a2a;
+
+    max-width: 380px;
+
+    line-height: 1.4;
+
+    opacity: 0.8;
+
+    margin: 8px 0 0 260px; /* topo | direita | base | esquerda */
+}
+
+/* ============== *
+ * 4. seção: home *
+ * ============== */
+.home {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-left: 10vw;
+}
+
+.intro {
+    max-width: 420px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    opacity: 0.8;
+}
