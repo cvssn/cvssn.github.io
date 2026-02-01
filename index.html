@@ -44,6 +44,49 @@
                 /* animation: glow 3s linear infinite;
                 -webkit-animation: glow 3s linear infinite; */
             }
+
+            /* --- 3. texto bio (canto inferior direito) --- */
+            .bio-container {
+                position: fixed;
+
+                bottom: 40px;
+                right: 40px;
+
+                max-width: 600px;
+
+                text-align: right;
+
+                z-index: 5;
+
+                font-family: 'garamondt', serif; /* ajuste sutil: aspas para garantir a leitura */
+                font-size: 2rem;
+
+                line-height: 1.3;
+
+                color: rgb(49, 48, 37);
+            }
+
+            .bio-container .highlight {
+                background-color: #ffbdeb; /* rosa bebê */
+                color: rgb(49, 48, 37);
+
+                padding: 0 5px;
+
+                /* efeitos pedidos: blur e grain */
+                filter: blur(1px);
+
+                display: inline;
+
+                box-decoration-break: clone;
+                -webkit-box-decoration-break: clone;
+            }
+
+            /* ajustes gerais para não quebrar o layout */
+            .site-title, .intro {
+                position: relative;
+
+                z-index: 2;
+            }
         </style>
     </head>
 
@@ -109,6 +152,7 @@
 
         <main class="home"></main>
 
+        <!-- container de biografia -->
         <div class="bio-container">
             lucas cavassani is a <a class="soft" href="#">multidisciplinar artist,</a>
             <a class="soft" href="#">graphic designer,</a>
@@ -126,6 +170,7 @@
             </p>
         </div>
 
+        <!-- modal de contato -->
         <div id="contactModal" class="modal">
             <div class="modal-overlay"></div>
 
@@ -165,6 +210,12 @@
             </div>
         </div>
 
+        <!-- áudio do click -->
+        <audio id="clickAudio">
+            <source src="assets/sounds/click.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- javascript -->
         <script src="js/main.js"></script>
     </body>
 </html>
