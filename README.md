@@ -4,4 +4,4 @@
 
 ## contributing
 
-if you're considering contributing to my project, first of all, thank you! check the [contribution guidelines here]() before getting started, they'll help you do your best right away.
+if you're considering contributing to my project, first of all, thank you! check the [contribution guidelines here](https://github.com/cvssn/cvssn.github.io/blob/main/CONTRIBUTING.md) before getting started, they'll help you do your best right away.
