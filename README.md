@@ -11,9 +11,9 @@
         </a>
     </p>
     <p>
-        <a href="https://www.instagram.com/cavassxni">
-            🅾 instagram
-        </a>
+        my <a href="https://www.instagram.com/cavassxni">
+            [◉°] instagram
+        </a> and
         <a href="https://x.com/grungegaze">
             𝕏 twitter
         </a>
