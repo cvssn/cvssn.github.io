@@ -9,9 +9,29 @@
     font-style: normal;
 }
 
+/* ================== *
+ * 1. reset e globais *
+ * ================== */
 * {
     margin: 0;
     padding: 0;
 
     box-sizing: border-box;
+}
+
+body {
+    background: #f8f8f8; /* cinza original */
+    color: #4a4848;
+
+    font-family: 'Inter', sans-serif;
+
+    cursor: none; /* cursor personalizado ativo */
+
+    padding-top: 140px;
+    padding-bottom: 26px;
+}
+
+/* background específico da home */
+body.home-bg {
+    background: #fbddf6;
 }
