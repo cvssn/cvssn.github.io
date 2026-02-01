@@ -218,3 +218,70 @@ header {
 
     opacity: 0.8;
 }
+
+.home-end {
+    margin-top: 20vh;
+
+    padding-left: 3vw;
+    padding-bottom: 40px;
+
+    opacity: 0.7;
+}
+
+.home-end p {
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+:root {
+    --links-color: #fda2e0; /* lilás soft */
+}
+
+.bio-container {
+    font-size: 1.2rem;
+
+    line-height: 1.6;
+
+    color: #333; /* cor do texto normal */
+}
+
+/* a classe que aplica o brilho */
+.soft {
+    text-decoration: none;
+
+    color: inherit; /* ou então `var(--links-color)` para texto colorido */
+
+    cursor: pointer;
+
+    /* estado inicial do brilho */
+    text-shadow: 0 0 10px var(--links-color);
+
+    /* animação */
+    animation: glow 3s ease-in-out infinite;
+    -webkit-animation: glow 3s ease-in-out infinite;
+}
+
+#bgVideo {
+    position: fixed;
+
+    right: 0;
+    bottom: 0;
+
+    min-width: 100%;
+    min-height: 100%;
+
+    width: auto;
+    height: auto;
+
+    z-index: -10; /* garantir que fique atrás de tudo */
+
+    object-fit: cover; /* garantir que cubra a tela sem distorcer */
+
+    /* opcional: filtros para dar o visual "raw" */
+    filter: contrast(1.1) saturate(1.1);
+
+    /* ou então `opacity: 0.8;` para misturar com a cor de fundo do body */
+}
