@@ -90,6 +90,11 @@ h1 {
     }
 }
 
+/* https://www.cursors-4u.com */
+* {
+    cursor: url(https://cur.cursors-4u.net/sports/spo-1/spo26.cur), auto !important;
+}
+
 /* ===================== *
  * 3. header e navegação *
  * ===================== */
