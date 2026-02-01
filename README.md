@@ -1,4 +1,24 @@
-# cvssn.github.io
+<div align="center">
+    <br>
+    <p>
+        <img src="assets/images/icon-earth.ico" title="icon earth" alt="an earth icon" width="100" />
+    </p>
+    <p>
+        <a href="https://github.com/cvssn">cavassani</a>'s personal website
+        <br>
+        <a href="https://cvssn.github.io">
+            cvssn.github.io
+        </a>
+    </p>
+    <p>
+        <a href="https://www.instagram.com/cavassxni">
+            🅾 instagram
+        </a>
+        <a href="https://x.com/grungegaze">
+            𝕏 twitter
+        </a>
+    </p>
+</div>
 
 [cvssn.github.io](https://cvssn.github.io) is my personal website.
 
