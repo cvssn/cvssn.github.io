@@ -23,7 +23,7 @@ img {
     /* max-height: 100vh; */
 }
 
-td:not(:first-child) {}
+/* td:not(:first-child) {} */
 
 @media all and (max-width: 768px) {
     tr {
