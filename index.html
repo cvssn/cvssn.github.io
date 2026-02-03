@@ -4,233 +4,137 @@
     <head>
         <!-- meta tags importantes/necessárias -->
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <!-- título da guia -->
         <title>
-            cavassani
+            lucas cavassani
         </title>
 
-        <!-- descrição da página -->
-        <meta name="description" content="">
-
-        <!-- open graph - https://ogp.me/ -->
-        <meta name="og:type" content="site">
-        <meta name="og:url" content="https://cvssn.github.io">
-        <meta name="og:title" content="lucas cavassani">
-        <meta name="og:description" content="lalala">
-
-        <!-- ícone da página -->
+        <!-- ícone da guia -->
         <link rel="icon" href="assets/images/icons/icon-earth.ico">
-
-        <!-- linkagem da estilização css -->
+        
+        <!-- linkagem de estilização css -->
         <link rel="stylesheet" href="css/style.css">
 
-        <!-- css interno -->
-        <style>
-            /* --- 1. imagem de fundo --- */
-            body.home-bg {
-                /* substitui `background.jpg` pelo path da imagem */
-                background-image: url('assets/images/1.gif');
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
-            }
-
-            /* --- 2. imagem pequena (canto superior direito) --- */
-            .top-sticker {
-                position: absolute;
-
-                top: 20px;
-                right: 20px;
-                width: 200px; /* ajustar o tamanho conforme necessário */
-
-                z-index: 10;
-            }
-
-            #soft {
-                text-shadow: 0 0 15px var(--links-color);
-
-                text-decoration: none;
-
-                /* animation: glow 3s linear infinite;
-                -webkit-animation: glow 3s linear infinite; */
-            }
-
-            /* --- 3. texto bio (canto inferior direito) --- */
-            .bio-container {
-                position: fixed;
-
-                bottom: 40px;
-                right: 40px;
-
-                max-width: 600px;
-
-                text-align: right;
-
-                z-index: 5;
-
-                font-family: 'garamondt', serif; /* ajuste sutil: aspas para garantir a leitura */
-                font-size: 2rem;
-
-                line-height: 1.3;
-
-                color: rgb(49, 48, 37);
-            }
-
-            .bio-container .highlight {
-                background-color: #ffbdeb; /* rosa bebê */
-                color: rgb(49, 48, 37);
-
-                padding: 0 5px;
-
-                /* efeitos pedidos: blur e grain */
-                filter: blur(1px);
-
-                display: inline;
-
-                box-decoration-break: clone;
-                -webkit-box-decoration-break: clone;
-            }
-
-            /* ajustes gerais para não quebrar o layout */
-            .site-title, .intro {
-                position: relative;
-
-                z-index: 2;
-            }
-        </style>
-
-        <!-- linkagem de javascript -->
+        <!-- linkagem de scripts javascript -->
         <script src="js/disabler-shortcuts.js"></script>
     </head>
 
-    <body class="home-bg" style="user-select: none;">
-        <video autoplay muted loop playsinline id="bgVideo">
-            <source src="assets/videos/1.mp4" type="video/mp4">
-        </video>
+    <body style="user-select: none;">
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: left;"></th>
 
-        <svg style="display: none;">
-            <defs>
-                <filter id="grain-filter">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" result="noise" />
-                    <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.5 0" in="noise" result="coloredNoise" />
-                    <feComposite operator="in" in="coloredNoise" in2="SourceGraphic" result="composite" />
-                    <feBlend mode="multiply" in="composite" in2="SourceGraphic" />
-                </filter>
-            </defs>
-        </svg>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
 
-        <button id="audioControl" class="audio-btn muted">
-            <svg class="icon-sound" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <tbody>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>
+                                lucas cavassani
+                            </strong>
+                        </td>
 
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            </svg>
-
-            <svg class="icon-mute" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-
-                <line x1="23" y1="9" x2="17" y2="15"></line>
-                <line x1="17" y1="9" x2="23" y2="15"></line>
-            </svg>
-        </button>
-
-        <header>
-            <div class="header-container">
-                <div class="menu-selection">
-                    <span class="handle top-left"></span>
-                    <span class="handle top-right"></span>
-                    <span class="handle bottom-left"></span>
-                    <span class="handle bottom-right"></span>
-
-                    <nav>
-                        <a class="active" href="/">
-                            home
-                        </a>
-
-                        <a href="works.html">
-                            works
-                        </a>
-
-                        <a href="about.html">
-                            about
-                        </a>
-
-                        <a href="#" id="openContact">
-                            contact
-                        </a>
-                    </nav>
-                </div>
-            </div>
-        </header>
-
-        <main class="home"></main>
-
-        <!-- container de biografia -->
-        <div class="bio-container">
-            lucas cavassani is a <a class="soft" href="#">multidisciplinar artist,</a>
-            <a class="soft" href="#">graphic designer,</a>
-            <a class="soft" href="#">creative coder,</a>
-            and everything in between.
-        </div>
-
-        <div class="home-end">
-            <p>
-                made slowly by cavassani
-            </p>
-
-            <p>
-                © 2026
-            </p>
-        </div>
-
-        <!-- modal de contato -->
-        <div id="contactModal" class="modal">
-            <div class="modal-overlay"></div>
-
-            <div class="modal-container">
-                <div class="menu-selection contact-box-style">
-                    <span class="close-modal">
-                        &times;
-                    </span>
-
-                    <span class="handle top-left"></span>
-                    <span class="handle top-right"></span>
-                    <span class="handle bottom-left"></span>
-                    <span class="handle bottom-right"></span>
-
-                    <div class="info-lines">
-                        <p>
-                            ✴︎ lcs.cvssn.qrz@gmail.com
-                        </p>
-
-                        <p>
-                            ✴︎ instagram - <a href="https://www.instagram.com/cavassxni" target="_blank">
-                                @cavassxni
+                        <td>
+                            <a href="lcs.cvssn.qrz@gmail.com">
+                                <span>
+                                    lcs.cvssn.qrz@gmail.com
+                                </span>
                             </a>
-                        </p>
+                        </td>
 
-                        <p>
-                            ✴︎ twitter - <a href="https://x.com/grungegaze" target="_blank">
-                                @grungegaze
+                        <td>
+                            santos, sp
+                        </td>
+                    </tr>
+
+                    <!-- seção: trabalhos -->
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>
+                                selected work
+                            </strong>
+                        </td>
+                        
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align: left;">
+                            <a href="https://www.instagram.com/keepchasingheaven">
+                                keepchasingheaven
                             </a>
-                        </p>
+                        </td>
 
-                        <p>
-                            ✴︎ available for freelance
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <td>
+                            graphic design
+                        </td>
+                        
+                        <td>
+                            2024
+                        </td>
+                    </tr>
 
-        <!-- áudio do click -->
-        <audio id="clickAudio">
-            <source src="assets/sounds/click.mp3" type="audio/mpeg">
-        </audio>
+                    <!-- seção: educação -->
+                    <tr>
+                        <td style="text-align :left;">
+                            <strong>
+                                education
+                            </strong>
+                        </td>
+                        
+                        <td></td>
+                        <td></td>
+                    </tr>
 
-        <!-- javascript -->
-        <script src="js/main.js"></script>
+                    <tr>
+                        <td style="text-align: left;">
+                            x
+                        </td>
+
+                        <td>
+                            x
+                        </td>
+                        
+                        <td>
+                            x
+                        </td>
+                    </tr>
+
+                    <!-- seção: experiência -->
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>
+                                experience
+                            </strong>
+                        </td>
+                        
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align: left;">
+                            customs broker
+                        </td>
+
+                        <td>
+                            waves group
+                        </td>
+                        
+                        <td>
+                            2025
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+	    </main>
     </body>
 </html>
