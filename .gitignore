@@ -1,3 +1,9 @@
+# diretório dos módulos do node.js
+node_modules
+
+# package-lock do node.js
+package-lock.json
+
 # página about (será futuramente implementada)
 about.html
 

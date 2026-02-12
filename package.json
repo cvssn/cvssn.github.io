@@ -1,0 +1,29 @@
+{
+  "name": "cvssn.github.io",
+  "version": "1.0.0",
+  "description": "my own personal website",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvssn/cvssn.github.io.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "cavassani",
+    "email": "lcs.cvssn.qrz@gmail.com"
+  },
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/cvssn/cvssn.github.io/issues"
+  },
+  "homepage": "https://github.com/cvssn/cvssn.github.io#readme",
+  "dependencies": {
+    "moment": "^2.30.1"
+  }
+}
