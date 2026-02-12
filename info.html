@@ -121,6 +121,149 @@
 
                         border: 1px solid #000;
                     }
+
+                    /* ----- barra de scroll horizontal (pequena) ----- */
+                    .c-subsec-links::-webkit-scrollbar,
+                    .c-filters-row::-webkit-scrollbar,
+                    .c-navi-sub.scroll::-webkit-scrollbar,
+                    .c-breads::-webkit-scrollbar,
+                    .c-filters::-webkit-scrollbar,
+                    .c-subsec-links::-webkit-scrollbar,
+                    .c-filter-block::-webkit-scrollbar,
+                    .c-subnav-content::-webkit-scrollbar,
+                    c-panels::-webkit-scrollbar {
+                        height: 4px;
+                        width: 4px;
+                    }
+
+                    @media only screen and (max-width: 768px) {
+                        .c-subsec-links::-webkit-scrollbar,
+                        .c-filters-row::-webkit-scrollbar,
+                        .c-navi-sub.scroll::-webkit-scrollbar,
+                        .c-breads::-webkit-scrollbar,
+                        .c-filters::-webkit-scrollbar,
+                        .c-subsec-links::-webkit-scrollbar,
+                        .c-filter-block::-webkit-scrollbar,
+                        .c-subnav-content::-webkit-scrollbar,
+                        .c-panels::-webkit-scrollbar {
+                            height:4px;
+                        }
+                    }
+
+                    .c-subsec-links::-webkit-scrollbar-button,
+                    .c-filters-row::-webkit-scrollbar-button,
+                    .c-navi-sub.scroll::-webkit-scrollbar-button,
+                    .c-filters::-webkit-scrollbar-button,
+                    .c-filter-block::-webkit-scrollbar-button,
+                    .c-subnav-content::-webkit-scrollbar-button,
+                    .c-panels::-webkit-scrollbar-button {
+                        display: none;
+                    }
+
+                    .c-subsec-links::-webkit-scrollbar-track,
+                    .c-navi-sub.scroll::-webkit-scrollbar-track,
+                    .c-breads::-webkit-scrollbar-track,
+                    .c-filters::-webkit-scrollbar-track,
+                    .c-filter-block::-webkit-scrollbar-track,
+                    .c-subnav-content::-webkit-scrollbar-track,
+                    .c-panels::-webkit-scrollbar-track {
+                        opacity: 1;
+                    }
+
+                    .c-subsec-links::-webkit-scrollbar-thumb,
+                    .c-filters-row::-webkit-scrollbar-thumb,
+                    .c-navi-sub.scroll::-webkit-scrollbar-thumb,
+                    .c-filters::-webkit-scrollbar-thumb,
+                    .c-breads::-webkit-scrollbar-thumb,
+                    .c-filter-block::-webkit-scrollbar-thumb,
+                    .c-subnav-content::-webkit-scrollbar-thumb,
+                    .c-panels::-webkit-scrollbar-thumb { 
+                        border-radius: 2px;
+                        border: 1px solid #000;
+                    }
+
+                    /* ----- barra de scroll horizontal (média) ----- */
+                    .c-clw-horiz-scroll::-webkit-scrollbar,
+                    .CL-delta-post.home::-webkit-scrollbar,
+                    .c-filters-row::-webkit-scrollbar::-webkit-scrollbar,
+                    .c-tab-content.home::-webkit-scrollbar {
+                        height: 10px;
+                    }
+
+                    @media only screen and (max-width: 768px) {
+                        .c-clw-horiz-scroll::-webkit-scrollbar,
+                        .CL-delta-post.home::-webkit-scrollbar,
+                        .c-filters-row:-webkit-scrollbar,
+                        .c-tab-content.home::-webkit-scrollbar {
+                            height: 10px;
+                        }
+                    }
+
+                    .c-clw-horiz-scroll::-webkit-scrollbar-button,
+                    .CL-delta-posts.home::-webkit-scrollbar-button,
+                    .CL-delta-post.home::-webkit-scrollbar-button,
+                    .c-filters-row::-webkit-scrollbar-button,
+                    .c-tab-content.home::-webkit-scrollbar-button {
+                        display: none;
+                    }
+
+                    .c-clw-horiz-scroll::-webkit-scrollbar-track,
+                    .CL-delta-post.home::-webkit-scrollbar-track,
+                    .c-filters-row::-webkit-scrollbar-track,
+                    .c-tab-content.home::-webkit-scrollbar-track {
+                        background-color: rgba(255, 255, 255, 1);
+                    }
+
+                    .c-clw-horiz-scroll::-webkit-scrollbar-thumb,
+                    .CL-delta-post.home::-webkit-scrollbar-thumb,
+                    .c-filters-row::-webkit-scrollbar-thumb,
+                    .c-tab-content.home::-webkit-scrollbar-thumb { 
+                        border-top: 0;
+                        border-bottom: 0;
+                        border-left: 1px solid #000;
+                        border-right: 1px solid #000;
+                    }
+
+                    /* ----- cores de seleção ----- */
+                    ::-moz-selection {
+                        color: white;
+                        background: black;
+                    }
+
+                    ::selection {
+                        color: white;
+                        background: black;
+                    }
+
+                    /* ----- estilização de slider ----- */
+                    .w-slider-dot {
+                        width: 3px;
+                        height: 20px;
+
+                        right: 0;
+                    }
+
+                    .w-slider-nav-invert > div.w-active,
+                    .w-slider-nav > div.w-active {
+                        height: 40px;
+                    }
+
+                    .c-subsec-content {
+                        transform: translateZ(0);
+                    }
+
+                    .clw-series-feat,
+                    .c-subsec-links,
+                    .c-subnav,
+                    .c-subnav-content,
+                    .CI-catalog-items.proj-relate {
+                        overflow-y: hidden;
+                    }
+
+
+                    .c-cart-wrapper {
+                        height: 100vh;
+                    }
                 </style>
             </div>
 
@@ -137,6 +280,12 @@
             <div class="c-meta-mobile">
                 <div class="t-meta meta">
                     lucas cavassani all rights reserved
+                </div>
+                
+                <img src="https://cdn.prod.website-files.com/5cb7be195426f23752acf2dc/672e3ce1e1a3ef4f3c353ee3_Frame%206452.svg" loading="lazy" id="w-node-_8b91a4b1-9cdd-afeb-bb6f-6e52d8a9e116-b9740ccd" alt="" class="img mobile-meta-1">
+
+                <div id="w-node-_323b80c4-66f5-c5cd-6969-1db7735140b8-b9740ccd" class="t-meta meta">
+                    -23.964077°n, -46.341863°w
                 </div>
             </div>
         </div>
