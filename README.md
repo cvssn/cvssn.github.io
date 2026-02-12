@@ -1,7 +1,7 @@
 <div align="center">
     <br>
     <p>
-        <img src="assets/images/icons/icon-earth.ico" title="icon earth" alt="an earth icon" width="100" />
+        <img src="assets/images/icons/dark.png" title="icon" alt="the website icon" width="100" />
     </p>
     <p>
         <a href="https://github.com/cvssn">cavassani</a>'s personal website
