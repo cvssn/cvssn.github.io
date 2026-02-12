@@ -1,0 +1,118 @@
+/* ----- barra de scroll da página ----- */
+::-webkit-scrollbar {
+    background: none;
+    width: 4px;
+}
+
+::-webkit-scrollbar-button{
+    display: none;
+}
+
+::-webkit-scrollbar-thumb { 
+    background-image: url("https://cvssn.github.io/assets/media/scrollbar-bg-texture.gif");
+    background-repeat: repeat;
+
+    border: 1px solid #000;
+}
+
+/* ----- barra de scroll horizontal (pequena) ----- */
+.c-subsec-links::-webkit-scrollbar,
+.c-filters-row::-webkit-scrollbar,
+.c-navi-sub.scroll::-webkit-scrollbar,
+.c-breads::-webkit-scrollbar,
+.c-filters::-webkit-scrollbar,
+.c-subsec-links::-webkit-scrollbar,
+.c-filter-block::-webkit-scrollbar,
+.c-subnav-content::-webkit-scrollbar,
+c-panels::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+}
+
+@media only screen and (max-width: 768px) {
+    .c-subsec-links::-webkit-scrollbar,
+    .c-filters-row::-webkit-scrollbar,
+    .c-navi-sub.scroll::-webkit-scrollbar,
+    .c-breads::-webkit-scrollbar,
+    .c-filters::-webkit-scrollbar,
+    .c-subsec-links::-webkit-scrollbar,
+    .c-filter-block::-webkit-scrollbar,
+    .c-subnav-content::-webkit-scrollbar,
+    .c-panels::-webkit-scrollbar {
+        height:4px;
+    }
+}
+
+.c-subsec-links::-webkit-scrollbar-button,
+.c-filters-row::-webkit-scrollbar-button,
+.c-navi-sub.scroll::-webkit-scrollbar-button,
+.c-filters::-webkit-scrollbar-button,
+.c-filter-block::-webkit-scrollbar-button,
+.c-subnav-content::-webkit-scrollbar-button,
+.c-panels::-webkit-scrollbar-button {
+    display: none;
+}
+
+.c-subsec-links::-webkit-scrollbar-track,
+.c-navi-sub.scroll::-webkit-scrollbar-track,
+.c-breads::-webkit-scrollbar-track,
+.c-filters::-webkit-scrollbar-track,
+.c-filter-block::-webkit-scrollbar-track,
+.c-subnav-content::-webkit-scrollbar-track,
+.c-panels::-webkit-scrollbar-track {
+    opacity: 1;
+}
+
+.c-subsec-links::-webkit-scrollbar-thumb,
+.c-filters-row::-webkit-scrollbar-thumb,
+.c-navi-sub.scroll::-webkit-scrollbar-thumb,
+.c-filters::-webkit-scrollbar-thumb,
+.c-breads::-webkit-scrollbar-thumb,
+.c-filter-block::-webkit-scrollbar-thumb,
+.c-subnav-content::-webkit-scrollbar-thumb,
+.c-panels::-webkit-scrollbar-thumb { 
+    border-radius: 2px;
+    border: 1px solid #000;
+}
+
+/* ----- barra de scroll horizontal (média) ----- */
+.c-clw-horiz-scroll::-webkit-scrollbar,
+.CL-delta-post.home::-webkit-scrollbar,
+.c-filters-row::-webkit-scrollbar::-webkit-scrollbar,
+.c-tab-content.home::-webkit-scrollbar {
+    height: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .c-clw-horiz-scroll::-webkit-scrollbar,
+    .CL-delta-post.home::-webkit-scrollbar,
+    .c-filters-row:-webkit-scrollbar,
+    .c-tab-content.home::-webkit-scrollbar {
+        height: 10px;
+    }
+}
+
+.c-clw-horiz-scroll::-webkit-scrollbar-button,
+.CL-delta-posts.home::-webkit-scrollbar-button,
+.CL-delta-post.home::-webkit-scrollbar-button,
+.c-filters-row::-webkit-scrollbar-button,
+.c-tab-content.home::-webkit-scrollbar-button {
+    display: none;
+}
+
+.c-clw-horiz-scroll::-webkit-scrollbar-track,
+.CL-delta-post.home::-webkit-scrollbar-track,
+.c-filters-row::-webkit-scrollbar-track,
+.c-tab-content.home::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.c-clw-horiz-scroll::-webkit-scrollbar-thumb,
+.CL-delta-post.home::-webkit-scrollbar-thumb,
+.c-filters-row::-webkit-scrollbar-thumb,
+.c-tab-content.home::-webkit-scrollbar-thumb { 
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
