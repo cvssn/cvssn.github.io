@@ -456,7 +456,7 @@
                     <div class="clw notif w-dyn-list">
                         <div role="list" class="cl notif w-dyn-items">
                             <div role="listitem" class="ci notif w-dyn-item">
-                                <a href="" class="c-notification fixed w-inline-block">
+                                <a href="https://github.com/cvssn/cvssn.github.io" target="_blank" rel="noopener" class="c-notification fixed w-inline-block">
                                     <div class="t-meta fade">
                                         the latest
                                     </div>
@@ -468,7 +468,7 @@
                                     </div>
 
                                     <div class="t-meta notif-fix">
-                                        netflix sports case study now live
+                                        website being built
                                     </div>
 
                                     <div class="div-block-1226">
@@ -487,7 +487,175 @@
                         <div class="t-meta">
                             m
                         </div>
+
+                        <div class="t-meta embed w-embed w-script">
+                            <!-- área de display do mês atual como número -->
+                            <div id="currentMonthDisplay">
+                                <span id="currentMonth"></span>
+                            </div>
+
+                            <script>
+                                function displayCurrentMonth() {
+                                    var currentDate = new Date();
+
+                                    var currentMonth = currentDate.getMonth() + 1;
+
+                                    var monthString = currentMonth
+                                        < 10
+                                        ? "0"
+                                        + currentMonth
+                                        : currentMonth.toString();
+
+                                    document.getElementById("currentMonth").textContent = monthString;
+                                }
+
+                                displayCurrentMonth();
+                            </script>
+                        </div>
                     </div>
+
+                    <div id="w-node-_3f01de63-2f6a-f942-5cf3-0b6c43af20fb-43af20f6" class="c-r date-meta">
+                        <div class="t-meta">
+                            d
+                        </div>
+
+                        <div class="t-meta embed w-embed w-script">
+                            <div id="dayOfMonthDisplay">
+                                <span id="dayOfMonth"></span>
+                            </div>
+
+                            <script>
+                                function displayDayOfMonth() {
+                                    var currentDate = new Date();
+
+                                    var dayOfMonth = currentDate.getDate();
+
+                                    document.getElementById("dayOfMonth").textContent = dayOfMonth;
+                                }
+
+                                displayDayOfMonth();
+                            </script>
+                        </div>
+                    </div>
+
+                    <div id="w-node-_3f01de63-2f6a-f942-5cf3-0b6c43af20ff-43af20f6" class="t-meta">
+                        y26
+                    </div>
+
+                    <div id="w-node-_3f01de63-2f6a-f942-5cf3-0b6c43af2101-43af20f6" class="c-r date-meta r">
+                        <div class="t-meta">
+                            t
+                        </div>
+
+                        <div class="t-meta embed w-embed w-script">
+                            <div id="currentTimeDisplay">
+                                <span id="currentTime"></span>
+                            </div>
+
+                            <script>
+                                function displayCurrentTime() {
+                                    var currentTimeInLosAngeles = new Date().toLocaleString(
+                                        "pt-BR", {
+                                            timeZone: "America/Sao_Paulo"
+                                        }
+                                    );
+
+                                    var [datePart, timePart] = currentTimeInLosAngeles.split(", ");
+                                    var [hours, minutes, seconds] = timePart.split(":");
+
+                                    var formattedTime = `${hours}:${minutes}:${seconds}`;
+
+                                    document.getElementById("currentTime").textContent = formattedTime;
+                                }
+
+                                displayCurrentTime();
+
+                                setInterval(displayCurrentTime, 1000);
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="/info" aria-current="page" class="c-panel contact w-inline-block w--current">
+                    <div class="t-meta fade">
+                        currently
+                    </div>
+
+                    <div class="t-meta">
+                        design @ waves group // founder/ecd @ ▊▊▊
+                    </div>
+
+                    <div class="c-r middle">
+                        <div class="t-meta hide">
+                            next availability:
+                        </div>
+                    </div>
+                </a>
+
+                <div class="c-grid-dots">
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
+                    <div class="c-dot"><div class="t-meta">+</div></div>
                 </div>
             </div>
         </div>
