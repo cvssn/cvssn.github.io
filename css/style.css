@@ -1,11 +1,11 @@
 html {
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
-	font-family: sans-serif
+	font-family: sans-serif;
 }
 
 body {
-	margin: 0
+	margin: 0;
 }
 
 article,
@@ -21,7 +21,7 @@ menu,
 nav,
 section,
 summary {
-	display: block
+	display: block;
 }
 
 audio,
@@ -29,53 +29,53 @@ canvas,
 progress,
 video {
 	vertical-align: baseline;
-	display: inline-block
+	display: inline-block;
 }
 
 audio:not([controls]) {
 	height: 0;
-	display: none
+	display: none;
 }
 
 [hidden],
 template {
-	display: none
+	display: none;
 }
 
 a {
-	background-color: #0000
+	background-color: #0000;
 }
 
 a:active,
 a:hover {
-	outline: 0
+	outline: 0;
 }
 
 abbr[title] {
-	border-bottom: 1px dotted
+	border-bottom: 1px dotted;
 }
 
 b,
 strong {
-	font-weight: 700
+	font-weight: 700;
 }
 
 dfn {
-	font-style: italic
+	font-style: italic;
 }
 
 h1 {
 	margin: .67em 0;
-	font-size: 2em
+	font-size: 2em;
 }
 
 mark {
 	color: #000;
-	background: #ff0
+	background: #ff0;
 }
 
 small {
-	font-size: 80%
+	font-size: 80%;
 }
 
 sub,
@@ -83,32 +83,32 @@ sup {
 	vertical-align: baseline;
 	font-size: 75%;
 	line-height: 0;
-	position: relative
+	position: relative;
 }
 
 sup {
-	top: -.5em
+	top: -.5em;
 }
 
 sub {
-	bottom: -.25em
+	bottom: -.25em;
 }
 
 img {
-	border: 0
+	border: 0;
 }
 
 svg:not(:root) {
-	overflow: hidden
+	overflow: hidden;
 }
 
 hr {
 	box-sizing: content-box;
-	height: 0
+	height: 0;
 }
 
 pre {
-	overflow: auto
+	overflow: auto;
 }
 
 code,
@@ -116,7 +116,7 @@ kbd,
 pre,
 samp {
 	font-family: monospace;
-	font-size: 1em
+	font-size: 1em;
 }
 
 button,
@@ -126,16 +126,17 @@ select,
 textarea {
 	color: inherit;
 	font: inherit;
-	margin: 0
+
+	margin: 0;
 }
 
 button {
-	overflow: visible
+	overflow: visible;
 }
 
 button,
 select {
-	text-transform: none
+	text-transform: none;
 }
 
 button,
@@ -144,28 +145,28 @@ input[type=reset] {
 	-webkit-appearance: button;
     appearance: button;
 
-	cursor: pointer
+	cursor: pointer;
 }
 
 button[disabled],
 html input[disabled] {
-	cursor: default
+	cursor: default;
 }
 
 button::-moz-focus-inner,
 input::-moz-focus-inner {
 	border: 0;
-	padding: 0
+	padding: 0;
 }
 
 input {
-	line-height: normal
+	line-height: normal;
 }
 
 input[type=checkbox],
 input[type=radio] {
 	box-sizing: border-box;
-	padding: 0
+	padding: 0;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -180,37 +181,40 @@ input[type=search] {
 
 input[type=search]::-webkit-search-cancel-button,
 input[type=search]::-webkit-search-decoration {
-	-webkit-appearance: none
+	-webkit-appearance: none;
 }
 
 legend {
 	border: 0;
-	padding: 0
+	padding: 0;
 }
 
 textarea {
-	overflow: auto
+	overflow: auto;
 }
 
 optgroup {
-	font-weight: 700
+	font-weight: 700;
 }
 
 table {
 	border-collapse: collapse;
-	border-spacing: 0
+	border-spacing: 0;
 }
 
 td,
 th {
-	padding: 0
+	padding: 0;
 }
 
+/* ícones do webflow */
 @font-face {
 	font-family: webflow-icons;
+
 	src: url(data:application/x-font-ttf;charset=utf-8;base64,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)format("truetype");
-	font-weight: 400;
-	font-style: normal
+	
+    font-weight: 400;
+	font-style: normal;
 }
 
 [class^=w-icon-],
@@ -223,40 +227,40 @@ th {
 	font-style: normal;
 	font-weight: 400;
 	line-height: 1;
-	font-family: webflow-icons !important
+	font-family: webflow-icons !important;
 }
 
 .w-icon-slider-right:before {
-	content: "î˜€"
+	content: "î˜€";
 }
 
 .w-icon-slider-left:before {
-	content: "î˜"
+	content: "î˜";
 }
 
 .w-icon-nav-menu:before {
-	content: "î˜‚"
+	content: "î˜‚";
 }
 
 .w-icon-arrow-down:before,
 .w-icon-dropdown-toggle:before {
-	content: "î˜ƒ"
+	content: "î˜ƒ";
 }
 
 .w-icon-file-upload-remove:before {
-	content: "î¤€"
+	content: "î¤€";
 }
 
 .w-icon-file-upload-icon:before {
-	content: "î¤ƒ"
+	content: "î¤ƒ";
 }
 
 * {
-	box-sizing: border-box
+	box-sizing: border-box;
 }
 
 html {
-	height: 100%
+	height: 100%;
 }
 
 body {
@@ -266,41 +270,41 @@ body {
 	margin: 0;
 	font-family: Arial, sans-serif;
 	font-size: 14px;
-	line-height: 20px
+	line-height: 20px;
 }
 
 img {
 	vertical-align: middle;
 	max-width: 100%;
-	display: inline-block
+	display: inline-block;
 }
 
 html.w-mod-touch * {
-	background-attachment: scroll !important
+	background-attachment: scroll !important;
 }
 
 .w-block {
-	display: block
+	display: block;
 }
 
 .w-inline-block {
 	max-width: 100%;
-	display: inline-block
+	display: inline-block;
 }
 
 .w-clearfix:before,
 .w-clearfix:after {
 	content: " ";
 	grid-area: 1/1/2/2;
-	display: table
+	display: table;
 }
 
 .w-clearfix:after {
-	clear: both
+	clear: both;
 }
 
 .w-hidden {
-	display: none
+	display: none;
 }
 
 .w-button {
@@ -312,7 +316,7 @@ html.w-mod-touch * {
 	border-radius: 0;
 	padding: 9px 15px;
 	text-decoration: none;
-	display: inline-block
+	display: inline-block;
 }
 
 input.w-button {
@@ -321,15 +325,15 @@ input.w-button {
 }
 
 html[data-w-dynpage] [data-w-cloak] {
-	color: #0000 !important
+	color: #0000 !important;
 }
 
 .w-code-block {
-	margin: unset
+	margin: unset;
 }
 
 pre.w-code-block code {
-	all: inherit
+	all: inherit;
 }
 
 .w-optimization {
@@ -384,7 +388,7 @@ pre.w-code-block code {
 	word-break: unset;
 	word-spacing: unset;
 	word-wrap: unset;
-	transition: unset
+	transition: unset;
 }
 
 .w-webflow-badge {
@@ -408,7 +412,7 @@ pre.w-code-block code {
 	display: inline-block !important;
 	position: fixed !important;
 	inset: auto 12px 12px auto !important;
-	transform: none !important
+	transform: none !important;
 }
 
 .w-webflow-badge>img {
@@ -416,7 +420,7 @@ pre.w-code-block code {
 	visibility: unset !important;
 	opacity: 1 !important;
 	vertical-align: middle !important;
-	display: inline-block !important
+	display: inline-block !important;
 }
 
 h1,
@@ -426,48 +430,48 @@ h4,
 h5,
 h6 {
 	margin-bottom: 10px;
-	font-weight: 700
+	font-weight: 700;
 }
 
 h1 {
 	margin-top: 20px;
 	font-size: 38px;
-	line-height: 44px
+	line-height: 44px;
 }
 
 h2 {
 	margin-top: 20px;
 	font-size: 32px;
-	line-height: 36px
+	line-height: 36px;
 }
 
 h3 {
 	margin-top: 20px;
 	font-size: 24px;
-	line-height: 30px
+	line-height: 30px;
 }
 
 h4 {
 	margin-top: 10px;
 	font-size: 18px;
-	line-height: 24px
+	line-height: 24px;
 }
 
 h5 {
 	margin-top: 10px;
 	font-size: 14px;
-	line-height: 20px
+	line-height: 20px;
 }
 
 h6 {
 	margin-top: 10px;
 	font-size: 12px;
-	line-height: 18px
+	line-height: 18px;
 }
 
 p {
 	margin-top: 0;
-	margin-bottom: 10px
+	margin-bottom: 10px;
 }
 
 blockquote {
@@ -475,45 +479,45 @@ blockquote {
 	margin: 0 0 10px;
 	padding: 10px 20px;
 	font-size: 18px;
-	line-height: 22px
+	line-height: 22px;
 }
 
 figure {
-	margin: 0 0 10px
+	margin: 0 0 10px;
 }
 
 figcaption {
 	text-align: center;
-	margin-top: 5px
+	margin-top: 5px;
 }
 
 ul,
 ol {
 	margin-top: 0;
 	margin-bottom: 10px;
-	padding-left: 40px
+	padding-left: 40px;
 }
 
 .w-list-unstyled {
 	padding-left: 0;
-	list-style: none
+	list-style: none;
 }
 
 .w-embed:before,
 .w-embed:after {
 	content: " ";
 	grid-area: 1/1/2/2;
-	display: table
+	display: table;
 }
 
 .w-embed:after {
-	clear: both
+	clear: both;
 }
 
 .w-video {
 	width: 100%;
 	padding: 0;
-	position: relative
+	position: relative;
 }
 
 .w-video iframe,
@@ -524,33 +528,35 @@ ol {
 	height: 100%;
 	position: absolute;
 	top: 0;
-	left: 0
+	left: 0;
 }
 
 fieldset {
 	border: 0;
 	margin: 0;
-	padding: 0
+	padding: 0;
 }
 
 button,
 [type=button],
 [type=reset] {
 	cursor: pointer;
+
 	-webkit-appearance: button;
     appearance: button;
-	border: 0
+
+	border: 0;
 }
 
 .w-form {
-	margin: 0 0 15px
+	margin: 0 0 15px;
 }
 
 .w-form-done {
 	text-align: center;
 	background-color: #ddd;
 	padding: 20px;
-	display: none
+	display: none;
 }
 
 .w-form-fail {
@@ -572,18 +578,18 @@ button,
 	padding: 8px 12px;
 	font-size: 14px;
 	line-height: 1.42857;
-	display: block
+	display: block;
 }
 
 .w-input::placeholder,
 .w-select::placeholder {
-	color: #999
+	color: #999;
 }
 
 .w-input:focus,
 .w-select:focus {
 	border-color: #3898ec;
-	outline: 0
+	outline: 0;
 }
 
 .w-input[disabled],
@@ -592,7 +598,7 @@ button,
 .w-select[readonly],
 fieldset[disabled] .w-input,
 fieldset[disabled] .w-select {
-	cursor: not-allowed
+	cursor: not-allowed;
 }
 
 .w-input[disabled]:not(.w-input-disabled),
@@ -601,55 +607,55 @@ fieldset[disabled] .w-select {
 .w-select[readonly],
 fieldset[disabled]:not(.w-input-disabled) .w-input,
 fieldset[disabled]:not(.w-input-disabled) .w-select {
-	background-color: #eee
+	background-color: #eee;
 }
 
 textarea.w-input,
 textarea.w-select {
-	height: auto
+	height: auto;
 }
 
 .w-select {
-	background-color: #f3f3f3
+	background-color: #f3f3f3;
 }
 
 .w-select[multiple] {
-	height: auto
+	height: auto;
 }
 
 .w-form-label {
 	cursor: pointer;
 	margin-bottom: 0;
 	font-weight: 400;
-	display: inline-block
+	display: inline-block;
 }
 
 .w-radio {
 	margin-bottom: 5px;
 	padding-left: 20px;
-	display: block
+	display: block;
 }
 
 .w-radio:before,
 .w-radio:after {
 	content: " ";
 	grid-area: 1/1/2/2;
-	display: table
+	display: table;
 }
 
 .w-radio:after {
-	clear: both
+	clear: both;
 }
 
 .w-radio-input {
 	float: left;
 	margin: 3px 0 0 -20px;
-	line-height: normal
+	line-height: normal;
 }
 
 .w-file-upload {
 	margin-bottom: 10px;
-	display: block
+	display: block;
 }
 
 .w-file-upload-input {
@@ -658,26 +664,26 @@ textarea.w-select {
 	width: .1px;
 	height: .1px;
 	position: absolute;
-	overflow: hidden
+	overflow: hidden;
 }
 
 .w-file-upload-default,
 .w-file-upload-uploading,
 .w-file-upload-success {
 	color: #333;
-	display: inline-block
+	display: inline-block;
 }
 
 .w-file-upload-error {
 	margin-top: 10px;
-	display: block
+	display: block;
 }
 
 .w-file-upload-default.w-hidden,
 .w-file-upload-uploading.w-hidden,
 .w-file-upload-error.w-hidden,
 .w-file-upload-success.w-hidden {
-	display: none
+	display: none;
 }
 
 .w-file-upload-uploading-btn {
@@ -688,7 +694,7 @@ textarea.w-select {
 	padding: 8px 12px;
 	font-size: 14px;
 	font-weight: 400;
-	display: flex
+	display: flex;
 }
 
 .w-file-upload-file {
@@ -698,7 +704,7 @@ textarea.w-select {
 	justify-content: space-between;
 	margin: 0;
 	padding: 8px 9px 8px 11px;
-	display: flex
+	display: flex;
 }
 
 .w-file-upload-file-name {
@@ -714,24 +720,24 @@ textarea.w-select {
 	margin-top: 3px;
 	margin-left: 10px;
 	padding: 3px;
-	display: block
+	display: block;
 }
 
 .w-icon-file-upload-remove {
 	margin: auto;
-	font-size: 10px
+	font-size: 10px;
 }
 
 .w-file-upload-error-msg {
 	color: #ea384c;
 	padding: 2px 0;
-	display: inline-block
+	display: inline-block;
 }
 
 .w-file-upload-info {
 	padding: 0 12px;
 	line-height: 38px;
-	display: inline-block
+	display: inline-block;
 }
 
 .w-file-upload-label {
@@ -742,24 +748,24 @@ textarea.w-select {
 	padding: 8px 12px;
 	font-size: 14px;
 	font-weight: 400;
-	display: inline-block
+	display: inline-block;
 }
 
 .w-icon-file-upload-icon,
 .w-icon-file-upload-uploading {
 	width: 20px;
 	margin-right: 8px;
-	display: inline-block
+	display: inline-block;
 }
 
 .w-icon-file-upload-uploading {
-	height: 20px
+	height: 20px;
 }
 
 .w-container {
 	max-width: 940px;
 	margin-left: auto;
-	margin-right: auto
+	margin-right: auto;
 }
 
 .w-container:before,
