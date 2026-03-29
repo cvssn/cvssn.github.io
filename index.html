@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="pt-BR" data-cvssn>
+<html lang="pt" data-cvssn>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,20 +118,135 @@
         </div>
 
         <!-- links -->
+        <a href="atlas.html" class="link" style="top: 25%; left: 80%;">
+            atlas
+        </a>
+
+        <svg class="lines" aria-hidden="true"></svg>
 
         <!-- overlay -->
+        <div class="overlay" id="overlay">
+            <div class="language-selector">
+                <button data-lang="pt" class="active" aria-pressed="true">
+                    pt
+                </button>
 
-        <!-- pt -->
-        <div class="lang lang-pt active">
-            <p>
-                
-            </p>
+                <button data-lang="en" aria-pressed="false">
+                    en
+                </button>
+
+                <button data-lang="fr" aria-pressed="false">
+                    fr
+                </button>
+
+                <button data-lang="jp" aria-pressed="false">
+                    jp
+                </button>
+            </div>
+
+            <div class="description">
+                <!-- pt -->
+                <div class="lang lang-pt active">
+                    <p>
+                        nascido na cidade de santos em 2006, estabelecendo meus próprios sistemas de operação contínua e uma atuação ativa em diversas localidades, incluindo cidade do méxico, tóquio, paris e nova york. mantenho controle abrangente sobre o design, a fabricação, a implementação e a ativação, combinando uma conceituação rigorosa com a construção material direta.
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <!-- en -->
+        <script>
+            const SVG_NS = "http://www.w3.org/2000/svg";
 
-        <!-- fr -->
+            const linesContainer = document.querySelector("svg.lines");
+            const logo = document.getElementById("logo");
+            const overlay = document.getElementById("overlay");
+            const langButtons = document.querySelectorAll(".language-selector button");
+            const links = [...document.querySelectorAll(".link")];
+            const descriptions = document.querySelectorAll(".description .lang");
 
-        <!-- jp -->
+            function computeFit() {
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+
+                const padX = Math.max(28, vw * 0.08);
+                const padY = Math.max(28, vh * 0.08);
+
+                const availW = vw - padX * 2;
+                const availH = vh - padY * 2;
+
+                const scale = Math.min(availW / STAR_VIEWBOX.width, availH / STAR_VIEWBOX.height);
+
+                const drawW = STAR_VIEWBOX.width * scale;
+                const drawH = STAR_VIEWBOX.height * scale;
+
+                const offsetX = (vw - drawW) / 2;
+                const offsetY = (vh - drawH) / 2;
+
+                return {
+                    scale,
+                    
+                    offsetX,
+                    offsetY
+                };
+            }
+
+            function toViewport(point, fit) {
+                return {
+                    x: fit.offsetX + point[0] * fit.scale,
+                    y: fit.offsetY + point[1] * fit.scale
+                };
+            }
+
+            function placeGeometry() {
+                const fit = computeFit();
+                const center = toViewport(STAR_NODES.center, fit);
+
+                logo.style.left = `${center.x}px`;
+                logo.style.top = `${center.y}px`;
+
+                linkMap.forEach(({ el, point }) => {
+                    const p = toViewport(point, fit);
+
+                    el.style.left = `${p.x}px`;
+                    el.style.top = `${p.y}px`;
+                });
+
+                drawLines(fit, center);
+
+                document.documentElement.style.visibility = "visible";
+            }
+
+            function drawLines(fit, center) {
+                if (!linesContainer)
+                    return;
+
+                linesContainer.innerHTML = "";
+            }
+
+            window.addEventListener("load", () => {
+                placeGeometry();
+            });
+
+            window.addEventListener("resize", () => requestAnimationFrame(placeGeometry));
+
+            logo.addEventListener("click", e => {
+                e.stopPropagation();
+
+                overlay.classList.toggle("active");
+            });
+
+            overlay.addEventListener("click", e=>{
+                if (!e.target.closest(".description") && !e.target.closest(".language-selector")) {
+                    overlay.classList.remove("active");
+                }
+            });
+
+            document.addEventListener("keydown", e=>{
+                if (e.key === "Escape")
+                    overlay.classList.remove("active");
+            });
+
+            langButtons.forEach(btn => btn.addEventListener("click", () => setLanguage(btn.dataset.lang)));
+        </script>
     </body>
 </html>
