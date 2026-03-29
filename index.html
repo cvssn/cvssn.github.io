@@ -43,6 +43,71 @@
             *, *::before, *::after {
                 box-sizing: border-box;
             }
+
+            html, body {
+                margin: 0;
+
+                background: var(--bg);
+                color: var(--fg);
+
+                font-family: var(--font-ui);
+                
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+
+                height: 100%;
+
+                overflow: hidden;
+            }
+
+            a {
+                color: var(--fg);
+
+                text-decoration: none;
+
+                border-bottom: 1px solid transparent;
+
+                transition: border-color .15s linear;
+            }
+
+            a:hover {
+                border-bottom-color: var(--accent);
+            }
+
+            html {
+                visibility: hidden;
+            }
+
+            /* ===== logo ===== */
+            .logo {
+                position: absolute;
+
+                transform: translate(-50%, -50%);
+
+                width: 66px;
+                height: auto;
+
+                z-index: 5;
+
+                cursor: pointer;
+            }
+
+            .logo img {
+                width: 100%;
+                height: auto;
+
+                display: block;
+
+                filter: invert(1) brightness(100%);
+
+                transition: filter .3s linear;
+            }
+
+            @media (prefers-color-scheme: light) {
+                .logo img {
+                    filter: none;
+                }
+            }
         </style>
     </head>
 
