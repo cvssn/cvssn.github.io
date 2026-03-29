@@ -1,0 +1,176 @@
+[data-cvssn] {
+    --bg: #000;
+    --fg: #e0e3e6;
+    --fg-dim: #aeb4ba;
+
+    --accent: #1860ff;
+
+    --line: #2a2e31;
+
+    --font-ui: "Times New Roman", Times, serif;
+}
+
+@media (prefers-color-scheme: light) {
+    [data-cvssn] {
+        --bg: #fff;
+        --fg: #0e1113;
+        --fg-dim: #4a5158;
+
+        --line: #d9dee2;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+
+    min-height: 100%;
+
+    background: var(--bg);
+    color: var(--fg);
+
+    font-family: var(--font-ui);
+
+    overflow: auto;
+    /* clave */
+
+    text-align: center;
+}
+
+/* header */
+header {
+    position: fixed;
+
+    top: 16px;
+    left: 16px;
+
+    z-index: 10;
+}
+
+header img {
+    width: 44px;
+}
+
+/* layout */
+main {
+    width: 100%;
+
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    padding: 80px 20px 60px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+h1 {
+    margin: 0;
+
+    text-transform: lowercase;
+
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+h1 em {
+    font-style: italic;
+}
+
+p {
+    margin: 0;
+
+    color: var(--fg-dim);
+
+    font-size: 0.95rem;
+
+    line-height: 1.5;
+}
+
+/* imagem */
+.portada {
+    width: clamp(200px, 40vw, 320px);
+
+    cursor: zoom-in;
+}
+
+/* form */
+form {
+    width: 100%;
+    max-width: 380px;
+
+    display: grid;
+
+    gap: 12px;
+}
+
+label {
+    color: var(--fg-dim);
+
+    text-transform: lowercase;
+}
+
+input,
+select {
+    width: 100%;
+
+    padding: .5rem;
+
+    border: 1px solid var(--line);
+
+    background: transparent;
+    color: var(--fg);
+}
+
+button {
+    border: 1px solid var(--accent);
+
+    background: transparent;
+
+    color: var(--fg);
+
+    padding: .5rem;
+
+    cursor: pointer;
+}
+
+#formNote {
+    color: var(--fg-dim);
+}
+
+/* lightbox restaurado */
+#cvssn-lightbox {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, .6);
+
+    backdrop-filter: blur(8px);
+}
+
+#cvssn-lightbox.open {
+    display: flex;
+}
+
+#cvssn-lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+}
