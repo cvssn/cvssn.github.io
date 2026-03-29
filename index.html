@@ -10,10 +10,310 @@
         <title>
             cavassani
         </title>
+        
+        <style>
+            [data-cvssn] {
+                --bg: #000;
+                --fg: #e0e3e6;
+                --fg-dim: #aeb4ba;
 
-        <link rel="stylesheet" href="assets/css/index.css">
+                --accent: #1860ff;
 
-        <script src="assets/js/index.js"></script>
+                --line: #2a2e31;
+                --line-weak: #1a1d20;
+
+                --star-opacity: .12;
+
+                --font-ui: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            }
+
+            @media (prefers-color-scheme: light) {
+                [data-cvssn] {
+                    --bg: #fff;
+                    --fg: #0e1113;
+                    --fg-dim: #4a5158;
+
+                    --line: #d9dee2;
+                    --line-weak: #eceff2;
+
+                    --star-opacity: .05;
+                }
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                margin: 0;
+
+                background: var(--bg);
+                color: var(--fg);
+
+                font-family: var(--font-ui);
+
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+
+                height: 100%;
+
+                overflow: hidden;
+            }
+
+            a {
+                color: var(--fg);
+
+                text-decoration: none;
+
+                border-bottom: 1px solid transparent;
+
+                transition: border-color .15s linear;
+            }
+
+            a:hover {
+                border-bottom-color: var(--accent);
+            }
+
+            html {
+                visibility: hidden;
+            }
+
+            /* ===== logo ===== */
+            .logo {
+                position: absolute;
+
+                transform: translate(-50%, -50%);
+
+                width: 66px;
+                height: auto;
+
+                z-index: 5;
+
+                cursor: pointer;
+            }
+
+            .logo img {
+                width: 100%;
+                height: auto;
+
+                display: block;
+
+                filter: invert(1) brightness(100%);
+
+                transition: filter .3s linear;
+            }
+
+            @media (prefers-color-scheme: light) {
+                .logo img {
+                    filter: none;
+                }
+            }
+
+            /* ===== links ===== */
+            .link {
+                position: absolute;
+
+                transform: translate(-50%, -50%);
+
+                font: 500 .9rem/1 var(--font-ui);
+
+                text-transform: lowercase;
+
+                color: var(--fg);
+
+                z-index: 3;
+
+                transition: opacity .15s linear;
+
+                white-space: nowrap;
+            }
+
+            .link:hover {
+                opacity: .7;
+            }
+
+            /* ===== linhas ===== */
+            svg.lines {
+                position: absolute;
+
+                inset: 0;
+
+                width: 100%;
+                height: 100%;
+
+                z-index: 1;
+
+                pointer-events: none;
+
+                transition: opacity .15s linear;
+            }
+
+            svg.lines line {
+                stroke: var(--fg);
+                stroke-opacity: var(--star-opacity);
+                stroke-width: 3;
+
+                vector-effect: non-scaling-stroke;
+
+                stroke-dasharray: 1000;
+                stroke-dashoffset: 1000;
+
+                animation: draw 6.6s linear forwards;
+            }
+
+            svg.lines line.spoke {
+                stroke-opacity: calc(var(--star-opacity) * 2);
+            }
+
+            @keyframes draw {
+                to {
+                    stroke-dashoffset: 0;
+                }
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+
+                    transform: translate(-50%, -50%) scale(.96);
+                }
+
+                to {
+                    opacity: 1;
+
+                    transform: translate(-50%, -50%) scale(1);
+                }
+            }
+
+            /* ===== overlay ===== */
+            .overlay {
+                position: fixed;
+
+                inset: 0;
+
+                padding: 2rem 1rem;
+
+                background: rgba(255, 255, 255, .08);
+
+                backdrop-filter: blur(12px) saturate(120%);
+                -webkit-backdrop-filter: blur(12px) saturate(120%);
+
+                z-index: 10;
+
+                overflow: auto;
+
+                display: flex;
+                flex-direction: column;
+
+                align-items: center;
+
+                opacity: 0;
+
+                pointer-events: none;
+
+                transition: opacity .15s linear;
+            }
+
+            @media (prefers-color-scheme: light) {
+                .overlay {
+                    background: rgba(255, 255, 255, .66);
+                }
+            }
+
+            .overlay.active {
+                opacity: 1;
+
+                pointer-events: auto;
+            }
+
+            .overlay .language-selector {
+                text-align: center;
+
+                margin: 0 0 1.5rem;
+            }
+
+            .overlay .language-selector button {
+                appearance: none;
+
+                background: transparent;
+
+                border: 1px solid var(--line);
+
+                font: 600 .9rem/1 var(--font-ui);
+
+                color: var(--fg-dim);
+
+                text-transform: lowercase;
+
+                padding: .35rem .6rem;
+
+                margin: 0 .25rem;
+
+                cursor: pointer;
+
+                transition: color .15s linear, border-color .15s linear, background-color .15s linear;
+            }
+
+            .overlay .language-selector button:hover {
+                color: var(--fg);
+            }
+
+            .overlay .language-selector button.active {
+                color: var(--fg);
+
+                border-color: var(--accent);
+
+                background: rgba(24, 96, 255, .08);
+            }
+
+            .description {
+                max-width: 800px;
+                width: 100%;
+
+                font: 400 1rem/1.62 var(--font-ui);
+
+                color: var(--fg);
+
+                text-align: left;
+            }
+
+            .description p {
+                margin: 0 0 1em;
+            }
+
+            .description .lang {
+                display: none;
+            }
+
+            .description .lang.active {
+                display: block;
+            }
+
+            @media (max-width: 768px) {
+                .logo {
+                    width: 65px;
+                }
+
+                .link {
+                    font-size: .8rem;
+                }
+
+                .overlay .description {
+                    font-size: .95rem;
+
+                    line-height: 1.55;
+
+                    padding: 1.2rem;
+                }
+
+                .overlay p {
+                    word-break: break-word;
+                }
+            }
+        </style>
     </head>
 
     <body>
@@ -103,5 +403,179 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            const SVG_NS = "http://www.w3.org/2000/svg";
+
+            const STAR_VIEWBOX = {
+                width: 595.28,
+                height: 841.89
+            };
+
+            const STAR_LINES = [
+                [[85.76, 138.22], [537.94, 566.09]],
+                [[85.76, 138.22], [380.41, 684.49]],
+                [[178.51, 310.18], [537.94, 566.09]],
+                [[485.87, 140.17], [33.65, 567.77]],
+                [[485.87, 140.17], [194.31, 683.52]],
+                [[394.45, 310.55], [33.65, 567.77]],
+                [[286.77, 328.43], [194.31, 683.52]],
+                [[286.77, 328.43], [380.41, 684.49]]
+            ];
+
+            const STAR_NODES = {
+                top: [285.815, 139.195],
+                upperRight: [537.94, 566.09],
+                lowerRight: [380.41, 684.49],
+                lowerLeft: [194.31, 683.52],
+                upperLeft: [33.65, 567.77],
+                topRight: [485.87, 140.17],
+                topLeft: [85.76, 138.22],
+                center: [285.795, 411.355]
+            };
+
+            const linesContainer = document.querySelector("svg.lines");
+            const logo = document.getElementById("logo");
+            const overlay = document.getElementById("overlay");
+            const langButtons = document.querySelectorAll(".language-selector button");
+            const links = [...document.querySelectorAll(".link")];
+            const descriptions = document.querySelectorAll(".description .lang");
+
+            const linkMap = [
+                { el: document.querySelector('a[href="12.e.html"]'), point: STAR_NODES.upperRight },
+                { el: document.querySelector('a[href="atlas.html"]'), point: STAR_NODES.upperLeft },
+                { el: document.querySelector('a[href="sistemas.html"]'), point: STAR_NODES.topRight },
+                { el: document.querySelector('a[href="marco_teorico.index.html"]'), point: STAR_NODES.lowerLeft },
+                { el: document.querySelector('a[href="a.e.i.index.html"]'), point: STAR_NODES.lowerRight },
+                { el: document.querySelector('a[href="ep.2.html"]'), point: STAR_NODES.topLeft }
+            ].filter(item => item.el);
+
+            function computeFit() {
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+
+                const padX = Math.max(28, vw * 0.08);
+                const padY = Math.max(28, vh * 0.08);
+
+                const availW = vw - padX * 2;
+                const availH = vh - padY * 2;
+
+                const scale = Math.min(availW / STAR_VIEWBOX.width, availH / STAR_VIEWBOX.height);
+
+                const drawW = STAR_VIEWBOX.width * scale;
+                const drawH = STAR_VIEWBOX.height * scale;
+
+                const offsetX = (vw - drawW) / 2;
+                const offsetY = (vh - drawH) / 2;
+
+                return {
+                    scale,
+
+                    offsetX,
+                    offsetY
+                };
+            }
+
+            function toViewport(point, fit) {
+                return {
+                    x: fit.offsetX + point[0] * fit.scale,
+                    y: fit.offsetY + point[1] * fit.scale
+                };
+            }
+
+            function placeGeometry() {
+                const fit = computeFit();
+                const center = toViewport(STAR_NODES.center, fit);
+
+                logo.style.left = `${center.x}px`;
+                logo.style.top = `${center.y}px`;
+
+                linkMap.forEach(({ el, point }) => {
+                    const p = toViewport(point, fit);
+
+                    el.style.left = `${p.x}px`;
+                    el.style.top = `${p.y}px`;
+                });
+
+                drawLines(fit, center);
+
+                document.documentElement.style.visibility = "visible";
+            }
+
+            function drawLines(fit, center) {
+                if (!linesContainer)
+                    return;
+
+                linesContainer.innerHTML = "";
+
+                STAR_LINES.forEach(([a, b]) => {
+                    const p1 = toViewport(a, fit);
+                    const p2 = toViewport(b, fit);
+
+                    const ln = document.createElementNS(SVG_NS, "line");
+
+                    ln.setAttribute("x1", p1.x);
+                    ln.setAttribute("y1", p1.y);
+                    ln.setAttribute("x2", p1.x);
+                    ln.setAttribute("y2", p1.y);
+
+                    linesContainer.appendChild(ln);
+                });
+
+                linkMap.forEach(({ point }) => {
+                    const p = toViewport(point, fit);
+
+                    const spoke = document.createElementNS(SVG_NS, "line");
+
+                    spoke.setAttribute("x1", center.x);
+                    spoke.setAttribute("y1", center.y);
+
+                    spoke.setAttribute("x2", p.x);
+                    spoke.setAttribute("y2", p.y);
+
+                    spoke.setAttribute("class", "spoke");
+
+                    linesContainer.appendChild(spoke);
+                });
+            }
+
+            function setLanguage(lang) {
+                langButtons.forEach(btn => {
+                    const active = btn.dataset.lang === lang;
+
+                    btn.classList.toggle("active", active);
+                    btn.setAttribute("aria-pressed", active ? "true" : "false");
+                });
+
+                descriptions.forEach(desc => {
+                    desc.classList.toggle("active", desc.classList.contains(`lang-${lang}`));
+                });
+            }
+
+            window.addEventListener("load", () => {
+                placeGeometry();
+            });
+
+            window.addEventListener("resize", () => requestAnimationFrame(placeGeometry));
+
+            logo.addEventListener("click", e => {
+                e.stopPropagation();
+
+                overlay.classList.toggle("active");
+            });
+
+            overlay.addEventListener("click", e => {
+                if (!e.target.closest(".description") && !e.target.closest(".language-selector")) {
+                    overlay.classList.remove("active");
+                }
+            });
+
+            document.addEventListener("keydown", e => {
+                if (e.key === "Escape")
+                    overlay.classList.remove("active");
+            });
+
+            langButtons.forEach(btn => btn.addEventListener("click", () => setLanguage(btn.dataset.lang)));
+        </script>
     </body>
 </html>
