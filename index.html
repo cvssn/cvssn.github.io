@@ -74,9 +74,9 @@
                 border-bottom-color: var(--accent);
             }
 
-            /* html {
+            html {
                 visibility: hidden;
-            } */
+            }
 
             /* ===== logo ===== */
             .logo {
@@ -184,6 +184,132 @@
                     transform: translate(-50%, -50%) scale(1);
                 }
             }
+
+            /* ===== overlay ===== */
+            .overlay {
+                position: fixed;
+
+                inset: 0;
+
+                padding: 2rem 1rem;
+
+                background: rgba(255, 255, 255, .08);
+
+                backdrop-filter: blur(12px) saturate(120%);
+                -webkit-backdrop-filter: blur(12px) saturate(120%);
+
+                z-index: 10;
+
+                overflow: auto;
+
+                display: flex;
+                flex-direction: column;
+
+                align-items: center;
+
+                opacity: 0;
+
+                pointer-events: none;
+
+                transition: opacity .15s linear;
+            }
+
+            @media (prefers-color-scheme: light) {
+                .overlay {
+                    background: rgba(255, 255, 255, .66);
+                }
+            }
+
+            .overlay.active {
+                opacity: 1;
+
+                pointer-events: auto;
+            }
+
+            .overlay .language-selector {
+                text-align: center;
+                
+                margin: 0 0 1.5rem;
+            }
+            
+            .overlay .language-selector button {
+                appearance: none;
+                
+                background: transparent;
+                
+                border: 1px solid var(--line);
+                
+                font: 600 .9rem/1 var(--font-ui);
+                
+                color: var(--fg-dim);
+                
+                text-transform: lowercase;
+                
+                padding: .35rem .6rem;
+                
+                margin: 0 .25rem;
+                
+                cursor: pointer;
+                
+                transition: color .15s linear, border-color .15s linear, background-color .15s linear;
+            }
+            
+            .overlay .language-selector button:hover {
+                color: var(--fg);
+            }
+            
+            .overlay .language-selector button.active {
+                color: var(--fg);
+
+                border-color: var(--accent);
+                
+                background: rgba(24, 96, 255, .08);
+            }
+
+            .description {
+                max-width: 800px;
+                width: 100%;
+
+                font: 400 1rem/1.62 var(--font-ui);
+
+                color: var(--fg);
+                
+                text-align: left;
+            }
+
+            .description p {
+                margin: 0 0 1em;
+            }
+            
+            .description .lang {
+                display: none;
+            }
+            
+            .description .lang.active {
+                display: block;
+            }
+
+            @media (max-width: 768px) {
+                .logo {
+                    width: 65px;
+                }
+
+                .link {
+                    font-size: .8rem;
+                }
+                
+                .overlay .description {
+                    font-size: .95rem;
+                    
+                    line-height: 1.55;
+                    
+                    padding: 1.2rem;
+                }
+                
+                .overlay p {
+                    word-break: break-word;
+                }
+            }
         </style>
     </head>
 
@@ -200,6 +326,22 @@
 
         <a href="atlas.html" class="link" style="top: 25%; left: 80%;">
             atlas
+        </a>
+
+        <a href="sistemas.html" class="link" style="top: 75%; left: 80%;">
+            sistemas
+        </a>
+
+        <a href="marco_teorico.index.html" class="link" style="top: 90%; left: 50%;">
+            marco teórico
+        </a>
+        
+        <a href="a.e.i.index.html" class="link" style="top: 75%; left: 20%;">
+            a.e.i.
+        </a>
+
+        <a href="ep.2.html" class="link" style="top: 25%; left: 20%;">
+            ep.2
         </a>
 
         <svg class="lines" aria-hidden="true"></svg>
@@ -228,7 +370,32 @@
                 <!-- pt -->
                 <div class="lang lang-pt active">
                     <p>
+                        cvssn é um projeto de investigação experimental ativa. <br>
+                        esta investigação é sustentada mediante a realização contínua de projetos físicos e operativos que funcionam como infraestrutura em uso.
+                    </p>
+
+                    <p>
+                        sua prática se articula a partir do desenvolvimento de sistemas adaptativos que integram arquitetura, som, tecnologia, publicação e pensamento crítico dentro de um mesmo sistema operativo.
+                    </p>
+
+                    <p>
                         nascido na cidade de santos em 2006, estabelecendo meus próprios sistemas de operação contínua e uma atuação ativa em diversas localidades, incluindo cidade do méxico, tóquio, paris e nova york. mantenho controle abrangente sobre o design, a fabricação, a implementação e a ativação, combinando uma conceituação rigorosa com a construção material direta.
+                    </p>
+
+                    <p>
+                        o trabalho de cvssn abrange a conceitualização, design, desenvolvimento e construção de sistemas especiais e arquiteturas experimentais, assim como o design e fabricação de dispositivos, estruturas e objetos. inclui também o desenvolvimento de sistemas sonoros, publicações editoriais e plataformas digitais, junto com a geração de metodologias, ferramentas e marcos de operação próprios. esses sitemas se ativam mediante programas, sessões e materializações que formam parte de sua própria investigação, enquanto cvssn desenvolve consultorias, sistemas e soluções específicas para instituições, marcas e organizações. 
+                    </p>
+
+                    <p>
+                        através deste processo, cvssn constrói infraestrutura conceitual, física e técnica que permite escalar e aprofundar novas vertentes de sua própria investigação.
+                    </p>
+                </div>
+
+                <!-- en -->
+                <div class="lang lang-en">
+                    <p>
+                        cvssn is an active experimental research project. <br>
+                        this research is supported by the ongoing implementation of physical and operational projects that function as infrastructure in use.
                     </p>
                 </div>
             </div>
@@ -237,12 +404,48 @@
         <script>
             const SVG_NS = "http://www.w3.org/2000/svg";
 
+            const STAR_VIEWBOX = {
+                width: 595.28,
+                height: 841.89
+            };
+            
+            const STAR_LINES = [
+                [[85.76,138.22],[537.94,566.09]],
+                [[85.76,138.22],[380.41,684.49]],
+                [[178.51,310.18],[537.94,566.09]],
+                [[485.87,140.17],[33.65,567.77]],
+                [[485.87,140.17],[194.31,683.52]],
+                [[394.45,310.55],[33.65,567.77]],
+                [[286.77,328.43],[194.31,683.52]],
+                [[286.77,328.43],[380.41,684.49]]
+            ];
+            
+            const STAR_NODES = {
+                top: [285.815,139.195],
+                upperRight: [537.94,566.09],
+                lowerRight: [380.41,684.49],
+                lowerLeft: [194.31,683.52],
+                upperLeft: [33.65,567.77],
+                topRight: [485.87,140.17],
+                topLeft: [85.76,138.22],
+                center: [285.795,411.355]
+            };
+
             const linesContainer = document.querySelector("svg.lines");
             const logo = document.getElementById("logo");
             const overlay = document.getElementById("overlay");
             const langButtons = document.querySelectorAll(".language-selector button");
             const links = [...document.querySelectorAll(".link")];
             const descriptions = document.querySelectorAll(".description .lang");
+
+            const linkMap = [
+                { el: document.querySelector('a[href="12.e.html"]'), point: STAR_NODES.upperRight },
+                { el: document.querySelector('a[href="atlas.html"]'), point: STAR_NODES.upperLeft },
+                { el: document.querySelector('a[href="sistemas.html"]'), point: STAR_NODES.topRight },
+                { el: document.querySelector('a[href="marco_teorico.index.html"]'), point: STAR_NODES.lowerLeft },
+                { el: document.querySelector('a[href="a.e.i.index.html"]'), point: STAR_NODES.lowerRight },
+                { el: document.querySelector('a[href="ep.2.html"]'), point: STAR_NODES.topLeft }
+            ].filter(item => item.el);
 
             function computeFit() {
                 const vw = window.innerWidth;
