@@ -1015,7 +1015,7 @@
                     <button id="btnSort" class="control" type="button"></button>
 
                     <div class="lang" role="group" aria-label="language">
-                        <button type="button" data-lang="es" aria-pressed="true">pt</button>
+                        <button type="button" data-lang="pt" aria-pressed="true">pt</button>
                         <button type="button" data-lang="en" aria-pressed="false">en</button>
                         <button type="button" data-lang="fr" aria-pressed="false">fr</button>
                         <button type="button" data-lang="jp" aria-pressed="false">jp</button>
@@ -1413,6 +1413,514 @@
                     stamp: `${year || 0}-01-01`, approximate: true
                 };
             }
+
+            const ENTRIES = DATA.map((entry, index) => {
+                const date = inferDate(entry);
+
+                return {
+                    ...entry,
+
+                    order: Number.isFinite(entry.order) ? entry.order : index + 1,
+
+                    year: entry.year || date.year || 0,
+
+                    date,
+
+                    _search: norm([entry.title, entry.meta, entry.href, ...(entry.tags || []), ...(entry.aliases || []), ...(entry.metaAlt || [])].join(' '))
+                };
+            });
+
+            function persistState() {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    lang: state.lang,
+                    view: state.view,
+                    sort: state.sort,
+
+                    tags: [
+                        ...state.tags
+                    ]
+                }));
+            }
+
+            function yearsSpan() {
+                const years = [...new Set(ENTRIES.map((entry) => entry.year).filter(Boolean))].sort((a, b) => a - b);
+
+                if (!years.length)
+                    return '0';
+
+                return years.length === 1 ? String(years[0]) : `${years[0]}-${years.at(-1)}`;
+            }
+
+            function primaryOrigin(entry) {
+                return (entry.origin || []).map((origin) => origin === 'arquitectura' ? t('source_arch') : origin === 'mdtc' ? t('source_mdtc') : origin).join(' + ') || t('none');
+            }
+
+            function allTags() {
+                const tags = new Set();
+
+                ENTRIES.forEach((entry) => (entry.tags || []).forEach((tag) => tags.add(tag)));
+
+                return [...tags].sort(byTagOrder);
+            }
+
+            function sortEntries(list) {
+                const items = [...list];
+            if (state.sort === 'alpha') {
+                items.sort((a, b) => a.title.localeCompare(b.title, 'pt', {
+                    sensitivity: 'base'
+                }));
+            } else {
+                items.sort((a, b) => b.date.stamp.localeCompare(a.date.stamp) || a.title.localeCompare(b.title, 'pt', {
+                    sensitivity: 'base'
+                }));
+            }
+                return items;
+            }
+
+            function groupByYear(items) {
+                const groups = new Map();
+
+                [...items].sort((a, b) => b.date.stamp.localeCompare(a.date.stamp) || a.order - b.order).forEach((item) => {
+                    const year = item.date.year || item.year || 0;
+
+                    if (!groups.has(year))
+                        groups.set(year, []);
+
+                    groups.get(year).push(item);
+                });
+
+                return [...groups.entries()].sort((a, b) => b[0] - a[0]);
+            }
+
+            function monthLabel(entry) {
+                if (!entry?.date?.year)
+                    return t('none');
+
+                const parsed = entry.meta.split('—')[0].trim();
+
+                if (entry?.date?.approximate && /^\d{4}$/.test(parsed))
+                    return String(entry.date.year);
+                
+                if (entry?.date?.month && !/^\d{4}$/.test(parsed))
+                    return parsed;
+                
+                return String(entry.date.year);
+            }
+
+            const lazyObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting)
+                        return;
+
+                    const el = entry.target;
+                    const src = el.getAttribute('data-src');
+
+                    if (!src) {
+                        observer.unobserve(el);
+                        
+                        return;
+                    }
+
+                    if (el.tagName === 'VIDEO') {
+                        el.src = src;
+                        el.removeAttribute('data-src');
+                        el.load();
+
+                        const tryPlay = () => el.play().catch(() => {});
+
+                        if (el.readyState >= 2)
+                            tryPlay();
+                        else {
+                            el.addEventListener('loadeddata', tryPlay, { once: true });
+                            el.addEventListener('canplay', tryPlay, { once: true });
+                        }
+                    } else if (el.tagName === 'IMG') {
+                        el.src = src;
+                        el.removeAttribute('data-src');
+                    }
+
+                    observer.unobserve(el);
+                });
+            }, { rootMargin: '500px 0px' });
+
+            function lazyMedia(root = document) {
+                $$('video[data-src], img[data-src]', root).forEach((item) => lazyObserver.observe(item));
+            }
+
+            const autoplayObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const video = entry.target;
+
+                    if (entry.isIntersecting)
+                        video.play().catch(() => {});
+                    else
+                        video.pause();
+                });
+            }, { threshold: 0.15 });
+
+            function setupVideoAutoplay(root = document) {
+                $$('video[data-auto]', root).forEach((video) => {
+                    video.muted = true;
+                    video.loop = true;
+                    video.autoplay = true;
+                    video.playsInline = true;
+
+                    video.setAttribute('muted', '');
+                    video.setAttribute('loop', '');
+                    video.setAttribute('autoplay', '');
+                    video.setAttribute('playsinline', '');
+
+                    autoplayObserver.observe(video);
+                });
+            }
+
+            function mediaEl(mediaItem, cls = '') {
+                if (!mediaItem)
+                    return '';
+
+                if (mediaItem.type === 'video') {
+                    return `<video class="${cls}" data-auto data-src="${mediaItem.src}" muted loop playsinline autoplay preload="metadata"></video>`;
+                }
+
+                return `<img class="${cls}" alt="" loading="lazy" decoding="async" data-src="${mediaItem.src}">`;
+            }
+
+            function mountStageMedia(mediaItem) {
+                if (!mediaItem)
+                    return '';
+
+                if (mediaItem.type === 'video') {
+                    return `<video controls playsinline preload="metadata"><source src="${mediaItem.src}"></video>`;
+                }
+
+                return `<img alt="" src="${mediaItem.src}" loading="eager" decoding="async">`;
+            }
+
+            function applyFilters() {
+                const q = norm(state.query);
+
+                state.filtered = ENTRIES.filter((entry) => {
+                    const tagOk = state.tags.size === 0 || [...state.tags].every((tag) => (entry.tags || []).includes(tag));
+                    const queryOk = !q || entry._search.includes(q);
+
+                    return tagOk && queryOk;
+                });
+
+                render();
+            }
+
+            function renderFilters() {
+                const chips = [`<button class="chip ${state.tags.size === 0 ? 'active' : ''}" type="button" data-tag="__all">${t('all')}</button>`];
+                
+                allTags().forEach((tag) => {
+                    const count = ENTRIES.filter((entry) => (entry.tags || []).includes(tag)).length;
+                    
+                    chips.push(`<button class="chip ${state.tags.has(tag) ? 'active' : ''}" type="button" data-tag="${tag}"><span>${tag}</span><b>${count}</b></button>`);
+                });
+                
+                DOM.filters.innerHTML = chips.join('');
+            }
+
+            function previewMedia(entry) {
+                const total = entry.media?.length || 0;
+                const subset = (entry.media || []).slice(0, state.previewLimit);
+                const items = subset.map((item, mediaIndex) => `<button class="thumb" type="button" data-open="${entry.href}" data-index="${mediaIndex}" aria-label="${t('preview')}">${mediaEl(item)}</button>`);
+                
+                if (total > state.previewLimit)
+                    items.push(`<button class="thumb more" type="button" data-open="${entry.href}" data-index="${state.previewLimit}">+${total - state.previewLimit}<br>${t('more_media')}</button>`);
+                
+                return items.join('');
+            }
+
+            function card(entry) {
+                return `
+                    <article class="card">
+                        <div class="card-head">
+                            <div class "card-top">
+                                <div>
+                                    <h3>
+                                        ${entry.title}
+                                    </h3>
+
+                                    <p class="meta">
+                                        ${entry.meta}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="tagline">
+                                ${(entry.tags || []).map((tag) => `<span>${tag}</span>`).join('')}
+                            </div>
+                        </div>
+
+                        <div class="preview-strip">
+                            <div class="media-rail">
+                                ${previewMedia(entry)}
+                            </div>
+                        </div>
+
+                        <div class="card-foot">
+                            <div class="foot-meta">
+                                <span>${primaryOrigin(entry)}</span>
+                                <span>${entry.year || '—'}</span>
+                                <span>${entry.media.length} ${t('count')}</span>
+                            </div>
+                            
+                            <div class="actions">
+                                <button class="action-btn" type="button" data-open="${entry.href}" data-index="0">
+                                    ${t('open')}
+                                </button>
+                                
+                                <a class="action-btn" href="${entry.href}" target="_self">
+                                    ${t('project')}
+                                </a>
+                            </div>
+                        </div>
+                    </article>`;
+            }
+
+            function renderMatrix() {
+                const items = sortEntries(state.filtered);
+
+                DOM.matrix.innerHTML = items.length ? items.map(card).join('') : `<div class="empty">${t('results')}: 0</div>`;
+                
+                lazyMedia(DOM.matrix);
+                setupVideoAutoplay(DOM.matrix);
+            }
+
+            function renderTimeline() {
+                const groups = groupByYear(state.filtered);
+
+                DOM.timeline.innerHTML = groups.length ? groups.map(([year, items]) => `
+                    <section class="year-block">
+                        <div class="year-head">
+                            <strong>
+                                ${year || '—'}
+                            </strong>
+                            
+                            <span>
+                                ${items.length} ${t('systems')}
+                            </span>
+                        </div>
+
+                        <div class="year-grid">
+                            ${items.map((item) => `
+                            <article class="mini" data-open="${item.href}" data-index="0">
+                                <div class="mini-media">
+                                    ${item.media[0] ? mediaEl(item.media[0], 'timeline-asset') : ''}
+                                </div>
+
+                                <div class="mini-info">
+                                    <strong>${item.title}</strong>
+                                    <span>${item.meta}</span>
+
+                                    <div class="micro">
+                                        <span>
+                                            ${monthLabel(item)}
+                                        </span>
+                                        
+                                        <span>
+                                            ${primaryOrigin(item)}
+                                        </span>
+                                    </div>
+                                </div>
+                            </article>`).join('')}
+                        </div>
+                    </section>`).join('') : `<div class="empty">${t('results')}: 0</div>`;
+
+                lazyMedia(DOM.timeline);
+                setupVideoAutoplay(DOM.timeline);
+            }
+
+            function updateStats() {
+                DOM.kAll.textContent = ENTRIES.length;
+                DOM.kYears.textContent = yearsSpan();
+                DOM.kVisible.textContent = state.filtered.length;
+                DOM.kFilters.textContent = state.tags.size;
+
+                const active = [];
+
+                if (state.query.trim())
+                    active.push(`${t('active_query')}: ${state.query.trim()}`);
+
+                if (state.tags.size)
+                    active.push(...state.tags);
+
+                DOM.metaResults.textContent = `${t('results')}: ${state.filtered.length}`;
+                DOM.metaActiveFilters.textContent = `${t('active_filters')}: ${active.length ? active.join(', ') : t('none')}`;
+            }
+
+            function renderCopy() {
+                document.title = t('title_page');
+                DOM.brandTitle.textContent = t('brand');
+                DOM.brandSub.textContent = t('brand_sub');
+                DOM.eyebrow.textContent = t('eyebrow');
+                DOM.heroTitle.textContent = t('hero');
+                DOM.heroSub.textContent = t('sub');
+                DOM.heroIntro.textContent = t('intro');
+                DOM.heroAddHint.textContent = t('add_hint');
+                DOM.labSystems.textContent = t('systems');
+                DOM.labYears.textContent = t('years');
+                DOM.labVisible.textContent = t('visible');
+                DOM.labFilters.textContent = t('filters');
+                DOM.q.placeholder = t('search');
+                DOM.btnMatrix.textContent = t('matrix');
+                DOM.btnChronology.textContent = t('chronology');
+                DOM.btnSort.textContent = t(state.sort);
+                DOM.vLink.textContent = t('project');
+                DOM.vClose.textContent = t('close');
+                DOM.lblMeta.textContent = t('metadata');
+                DOM.lblTags.textContent = t('tags');
+                DOM.lblOrigin.textContent = t('origin');
+                DOM.lblRoute.textContent = t('route');
+                DOM.lblAliases.textContent = t('aliases');
+                DOM.lblMedia.textContent = t('media');
+                DOM.sideHint.textContent = t('hint');
+            }
+
+            function renderViewState() {
+                DOM.btnMatrix.setAttribute('aria-pressed', String(state.view === 'matrix'));
+                DOM.btnChronology.setAttribute('aria-pressed', String(state.view === 'chronology'));
+                DOM.viewMatrix.classList.toggle('active', state.view === 'matrix');
+                DOM.viewChronology.classList.toggle('active', state.view === 'chronology');
+                DOM.langButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.lang === state.lang)));
+            }
+
+            function findEntry(href) {
+                return ENTRIES.find((entry) => entry.href === href);
+            }
+
+            function openViewer(href, index = 0) {
+                const entry = findEntry(href);
+                
+                if (!entry)
+                    return;
+
+                const media = entry.media || [];
+                const start = Math.max(0, Math.min(index, media.length - 1));
+
+                DOM.vTitle.textContent = entry.title;
+                DOM.vMeta.textContent = entry.meta;
+                DOM.vLink.href = entry.href;
+                DOM.sideMeta.textContent = [entry.meta].concat(entry.metaAlt || []).join(' · ');
+                DOM.sideOrigin.textContent = primaryOrigin(entry);
+                DOM.sideRoute.textContent = entry.href;
+                DOM.sideAliases.textContent = entry.aliases?.length ? entry.aliases.join(' · ') : t('none');
+                DOM.sideMedia.textContent = `${entry.media.length} ${t('count')}`;
+                DOM.sideTags.innerHTML = (entry.tags || []).map((tag) => `<span>${tag}</span>`).join('');
+
+                function paint(stageIndex) {
+                    DOM.stageMain.innerHTML = mountStageMedia(media[stageIndex]);
+
+                    DOM.stageRail.innerHTML = media.map((item, railIndex) => `
+                    <button class="rail-item ${railIndex === stageIndex ? 'active' : ''}" type="button" data-stage="${railIndex}">
+                        ${item.type === 'video' ? `<video data-src="${item.src}" muted loop playsinline autoplay preload="metadata"></video>` : `<img alt="" loading="lazy" decoding="async" data-src="${item.src}">`}
+                    </button>`).join('');
+
+                    lazyMedia(DOM.stageRail);
+                    setupVideoAutoplay(DOM.stageRail);
+                }
+
+                paint(start);
+
+                DOM.stageRail.onclick = (event) => {
+                    const button = event.target.closest('[data-stage]');
+
+                    if (!button)
+                        return;
+
+                    paint(Number(button.dataset.stage));
+                };
+
+                DOM.viewer.classList.add('open');
+                DOM.viewer.setAttribute('aria-hidden', 'false');
+
+                document.body.classList.add('viewer-open');
+            }
+
+            function closeViewer() {
+                DOM.viewer.classList.remove('open');
+                DOM.viewer.setAttribute('aria-hidden', 'true');
+
+                document.body.classList.remove('viewer-open');
+                
+                DOM.stageMain.innerHTML = '';
+                DOM.stageRail.innerHTML = '';
+            }
+
+            function render() {
+                renderCopy();
+                renderFilters();
+                updateStats();
+                renderViewState();
+
+                if (state.view === 'matrix')
+                    renderMatrix();
+                else renderTimeline();
+                    persistState();
+            }
+
+            function onDocumentClick(event) {
+                const openButton = event.target.closest('[data-open]');
+
+                if (openButton) {
+                    event.preventDefault();
+
+                    openViewer(openButton.dataset.open, Number(openButton.dataset.index || 0));
+
+                    return;
+                }
+
+                const chip = event.target.closest('.chip');
+
+                if (chip) {
+                    const tag = chip.dataset.tag;
+
+                    if (tag === '__all')
+                        state.tags.clear();
+                    else if (state.tags.has(tag))
+                        state.tags.delete(tag);
+                    else state.tags.add(tag);
+                        applyFilters();
+
+                    return;
+                }
+
+                const langButton = event.target.closest('.lang button');
+
+                if (langButton) {
+                    state.lang = langButton.dataset.lang;
+
+                    render();
+                }
+            }
+
+            function bindEvents() {
+                document.addEventListener('click', onDocumentClick);
+
+                DOM.q.addEventListener('input', (event) => { state.query = event.target.value; applyFilters(); });
+                DOM.btnMatrix.addEventListener('click', () => { state.view = 'matrix'; render(); });
+                DOM.btnChronology.addEventListener('click', () => { state.view = 'chronology'; render(); });
+                DOM.btnSort.addEventListener('click', () => { state.sort = state.sort === 'recent' ? 'alpha' : 'recent'; render(); });
+                DOM.vClose.addEventListener('click', closeViewer);
+                DOM.viewer.addEventListener('click', (event) => { if (event.target.id === 'viewer') closeViewer(); });
+
+                document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeViewer(); });
+
+                window.addEventListener('resize', () => {
+                    const next = window.matchMedia('(max-width: 700px)').matches ? 4 : 6;
+
+                    if (next !== state.previewLimit) {
+                        state.previewLimit = next; render();
+                    }
+                });
+            }
+
+            bindEvents();
+
+            state.filtered = [...ENTRIES];
+
+            render();
         </script>
     </body>
 </html>
