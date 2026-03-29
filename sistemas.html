@@ -1326,7 +1326,7 @@
             };
 
             const norm = (value) => (value || '').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
-            
+
             const t = (key) => LANGS[state.lang]?.[key] || LANGS.pt[key] || key;
 
             const byTagOrder = (a, b) => {
@@ -1337,6 +1337,82 @@
                     sensitivity: 'base'
                 });
             };
+
+            function inferDate(entry) {
+                const pool = [entry.meta, ...(entry.metaAlt || []), entry.title].filter(Boolean).join(' · ');
+                const raw = norm(pool);
+
+                const fullIso = raw.match(/(20\d{2})[\/-](\d{1,2})(?:[\/-](\d{1,2}))?/);
+
+                if (fullIso) {
+                    const year = Number(fullIso[1]);
+                    const month = Math.max(1, Math.min(12, Number(fullIso[2] || 1)));
+                    const day = Math.max(1, Math.min(31, Number(fullIso[3] || 1)));
+
+                    return {
+                        year,
+                        month,
+                        day,
+
+                        stamp: `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`
+                    };
+                }
+
+                const monthNames = Object.keys(MONTHS).sort((a, b) => b.length - a.length).join('|');
+                const monthBeforeYear = raw.match(new RegExp(`(?:^|[^\\p{L}])(${monthNames})(?:[^0-9]{0,24})(20\\d{2})`, 'u'));
+
+                if (monthBeforeYear) {
+                    const month = MONTHS[monthBeforeYear[1]] || 1;
+                    const year = Number(monthBeforeYear[2]);
+
+                    const dayLeadPattern = new RegExp(`(?:^|[^0-9])(\\d{1,2})(?:\\s*[–-]\\s*\\d{1,2})?\\s+${monthBeforeYear[1]}`, 'u');
+                    const dayLead = raw.match(dayLeadPattern);
+                    const day = dayLead ? Math.max(1, Math.min(31, Number(dayLead[1]))) : 1;
+                    
+                    return {
+                        year,
+                        month,
+                        day,
+                        
+                        stamp: `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`
+                    };
+                }
+
+                const yearBeforeMonth = raw.match(new RegExp(`(20\\d{2})(?:[^0-9]{0,24})(${monthNames})`, 'u'));
+
+                if (yearBeforeMonth) {
+                    const year = Number(yearBeforeMonth[1]);
+                    const month = MONTHS[yearBeforeMonth[2]] || 1;
+
+                    return {
+                        year,
+                        month,
+                        day: 1,
+                        
+                        stamp: `${year}-${String(month).padStart(2,'0')}-01`
+                    };
+                }
+
+                const yearRangeWithMonth = raw.match(new RegExp(`(20\\d{2})\\s*[–-]\\s*(20\\d{2})(?:[^0-9]{0,24})(${monthNames})`, 'u'));
+
+                if (yearRangeWithMonth) {
+                    const year = Number(yearRangeWithMonth[1]);
+                    const month = MONTHS[yearRangeWithMonth[3]] || 1;
+
+                    return { year, month, day: 1, stamp: `${year}-${String(month).padStart(2,'0')}-01` };
+                }
+
+                const yr = raw.match(/(20\d{2})/);
+                const year = entry.year || (yr ? Number(yr[1]) : 0) || 0;
+
+                return {
+                    year,
+                    month: 1,
+                    day: 1,
+                    
+                    stamp: `${year || 0}-01-01`, approximate: true
+                };
+            }
         </script>
     </body>
 </html>
