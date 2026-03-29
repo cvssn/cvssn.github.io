@@ -297,6 +297,49 @@
                     return;
 
                 linesContainer.innerHTML = "";
+
+                STAR_LINES.forEach(([a, b]) => {
+                    const p1 = toViewport(a, fit);
+                    const p2 = toViewport(b, fit);
+
+                    const ln = document.createElementNS(SVG_NS, "line");
+
+                    ln.setAttribute("x1", p1.x);
+                    ln.setAttribute("y1", p1.y);
+                    ln.setAttribute("x2", p1.x);
+                    ln.setAttribute("y2", p1.y);
+
+                    linesContainer.appendChild(ln);
+                });
+
+                linkMap.forEach(({ point }) => {
+                    const p = toViewport(point, fit);
+
+                    const spoke = document.createElementNS(SVG_NS, "line");
+
+                    spoke.setAttribute("x1", center.x);
+                    spoke.setAttribute("y1", center.y);
+
+                    spoke.setAttribute("x2", p.x);
+                    spoke.setAttribute("y2", p.y);
+
+                    spoke.setAttribute("class", "spoke");
+
+                    linesContainer.appendChild(spoke);
+                });
+            }
+
+            function setLanguage(lang) {
+                langButtons.forEach(btn => {
+                    const active = btn.dataset.lang === lang;
+
+                    btn.classList.toggle("active", active);
+                    btn.setAttribute("aria-pressed", active ? "true" : "false");
+                });
+
+                descriptions.forEach(desc => {
+                    desc.classList.toggle("active", desc.classList.contains(`lang-${lang}`));
+                });
             }
 
             window.addEventListener("load", () => {
