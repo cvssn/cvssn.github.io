@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="pt" data-cvssn>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta name="color-scheme" content="light dark">
+        
+        <title>
+            cvssn.ep.2
+        </title>
+
+        <link rel="preload" as="image" href="svg/cavassani.svg" fetchpriority="high">
+
+        <style>
+            :root {
+                --bg: #0b0d0f;
+                --fg: #e1e4e7;
+                --fg-dim: #a4abb2;
+                
+                --line: #2a2e31;
+                --grid: #181b1f;
+                
+                --pad: clamp(14px, 3.4vw, 48px);
+                --pad-x: clamp(16px, 4vw, 48px);
+                
+                --header-h: 64px;
+                
+                --maxw: 1440px;
+                
+                --b1: 1px solid var(--line);
+
+                --ui: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, Monaco, monospace;
+            }
+
+            @media (prefers-color-scheme: light) {
+                :root {
+                    --bg: #ffffff;
+                    --fg: #0b0d0f;
+                    --fg-dim: #4a525a;
+                    --line: #d7dde2;
+                    --grid: #eBeef2;
+                }
+
+                /* texto e header no modo normal, sem negativo */
+                header {
+                    mix-blend-mode: normal;
+
+                    color: var(--fg);
+                }
+
+                header img {
+                    mix-blend-mode: normal;
+                    
+                    filter: none;
+                }
+
+                .neg-shell {
+                    mix-blend-mode: normal;
+
+                    color: var(--fg);
+                }
+            }
+
+            *, *::before, *::after {
+                box-sizing: border-box;
+            }
+
+            html, body {
+                height: 100%;
+
+                margin: 0;
+            }
+
+            body {
+                background: var(--bg);
+                color: var(--fg);
+
+                font-family: var(--ui);
+                
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+
+                overflow-x: hidden;
+            }
+
+            a {
+                color: inherit;
+
+                text-decoration: none;
+            }
+
+            /* ===== camada de acesso seguro ===== */
+            body.locked {
+                overflow: hidden;
+            }
+
+            #access-shell {
+                position: fixed;
+
+                inset: 0;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                padding: var(--pad-x);
+
+                z-index: 100;
+
+                background: radial-gradient(circle at 10% 0%, rgba(24, 96, 255, .14) 0, transparent 52%)
+                    radial-gradient(circle at 90% 100%, rgba(24, 96, 255, .18) 0, transparent 55%)
+                    linear-gradient(135deg, #050608 0, #0b0d0f 40%, #050608 100%);
+            }
+
+            body.unlocked #access-shell {
+                display: none;
+            }
+
+            body.locked header,
+            body.locked .bg-hero,
+            body.locked .grain,
+            body.locked .bg-grid,
+            body.locked .crosshair,
+            body.locked main {
+                display: none;
+            }
+
+            .access-panel {
+                position: relative;
+
+                max-width: 420px;
+
+                width: 100%;
+
+                border: 1px solid var(--line);
+
+                background: linear-gradient(145deg, rgba(12, 13, 15, .96), rgba(8, 9, 11, .98));
+
+                box-shadow: 0 0 0 1px rgba(255, 255, 255, .02),
+                    0 18px 45px rgba(0, 0, 0, .75);
+
+                padding: 18px 18px 16px;
+
+                display: flex;
+                flex-direction: column;
+
+                gap: 14px;
+
+                overflow: hidden;
+            }
+
+            .access-panel::before {
+                content: "";
+
+                position: absolute;
+
+                inset: -40%;
+
+                background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .02) 0 1px, transparent 1px 3px),
+                    repeating-linear-gradient(90deg, rgba(0, 0, 0, .12) 0 1px, transparent 1px 4px);
+
+                mix-blend-mode: screen;
+
+                opacity: .18;
+
+                pointer-events: none;
+            }
+
+            .access-header {
+                position: relative;
+
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                
+                gap: 10px;
+
+                z-index: 1;
+            }
+
+            .access-id {
+                display: flex;
+                flex-direction: column;
+
+                gap: 4px;
+            }
+
+            .access-tagline {
+                font: 600 11px/1.2 var(--mono);
+
+                text-transform: lowercase;
+
+                letter-spacing: .12em;
+
+                color: var(--fg-dim);
+            }
+
+            .access-title {
+                font: 600 13px/1.35 var(--ui);
+
+                text-transform: none;
+
+                color: var(--fg);
+            }
+        </style>
+    </head>
+    
+    <body class="locked">
+        <!-- camada de acesso / password gate -->
+        <div id="access-shell" aria-label="secure access ep.2">
+            <section class="access-panel">
+                <header class="access-header">
+                    <div class="access-id">
+                        <div class="access-tagline">
+                            cvssn / restricted brief
+                        </div>
+
+                        <div class="access-title">
+                            ep.2 / acesso a documento técnico
+                        </div>
+                    </div>
+
+                    <div class="access-badge" id="access-badge">
+                        <span class="access-badge-dot"></span>
+
+                        <span>
+                            channel locked
+                        </span>
+                    </div>
+                </header>
+
+                <div class="access-body">
+                    <p>
+                        este documento foi concebido como uma ficha técnica expandida para o ep.2. se você recebeu este link, também recebeu uma chave de acesso exclusiva.
+                    </p>
+
+                    <form id="access-form" class="access-form" autocomplete="off" novalidate>
+                        <div class="access-row">
+                            <input
+                                id="access-input"
+                                class="access-input"
+                                
+                                type="password"
+                                inputmode="text"
+                            >
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>
