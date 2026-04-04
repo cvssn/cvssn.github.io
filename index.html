@@ -413,14 +413,31 @@
             };
 
             const STAR_LINES = [
-                [[85.76, 138.22], [537.94, 566.09]],
-                [[85.76, 138.22], [380.41, 684.49]],
-                [[178.51, 310.18], [537.94, 566.09]],
-                [[485.87, 140.17], [33.65, 567.77]],
-                [[485.87, 140.17], [194.31, 683.52]],
-                [[394.45, 310.55], [33.65, 567.77]],
-                [[286.77, 328.43], [194.31, 683.52]],
-                [[286.77, 328.43], [380.41, 684.49]]
+                [
+                    [85.76, 138.22],
+                    [537.94, 566.09]
+                ], [
+                    [85.76, 138.22],
+                    [380.41, 684.49]
+                ], [
+                    [178.51, 310.18],
+                    [537.94, 566.09]
+                ], [
+                    [485.87, 140.17],
+                    [33.65, 567.77]
+                ], [
+                    [485.87, 140.17],
+                    [194.31, 683.52]
+                ], [
+                    [394.45, 310.55],
+                    [33.65, 567.77]
+                ], [
+                    [286.77, 328.43],
+                    [194.31, 683.52]
+                ], [
+                    [286.77, 328.43],
+                    [380.41, 684.49]
+                ]
             ];
 
             const STAR_NODES = {
@@ -442,12 +459,25 @@
             const descriptions = document.querySelectorAll(".description .lang");
 
             const linkMap = [
-                { el: document.querySelector('a[href="12.e.html"]'), point: STAR_NODES.upperRight },
-                { el: document.querySelector('a[href="atlas.html"]'), point: STAR_NODES.upperLeft },
-                { el: document.querySelector('a[href="sistemas.html"]'), point: STAR_NODES.topRight },
-                { el: document.querySelector('a[href="marco_teorico.index.html"]'), point: STAR_NODES.lowerLeft },
-                { el: document.querySelector('a[href="a.e.i.index.html"]'), point: STAR_NODES.lowerRight },
-                { el: document.querySelector('a[href="ep.2.html"]'), point: STAR_NODES.topLeft }
+                {
+                    el: document.querySelector('a[href="12.e.html"]'),
+                    point: STAR_NODES.upperRight
+                }, {
+                    el: document.querySelector('a[href="atlas.html"]'),
+                    point: STAR_NODES.upperLeft
+                }, {
+                    el: document.querySelector('a[href="sistemas.html"]'),
+                    point: STAR_NODES.topRight
+                }, {
+                    el: document.querySelector('a[href="marco_teorico.index.html"]'),
+                    point: STAR_NODES.lowerLeft
+                }, {
+                    el: document.querySelector('a[href="a.e.i.index.html"]'),
+                    point: STAR_NODES.lowerRight
+                }, {
+                    el: document.querySelector('a[href="ep.2.html"]'),
+                    point: STAR_NODES.topLeft
+                }
             ].filter(item => item.el);
 
             function computeFit() {
@@ -461,7 +491,7 @@
                 const availH = vh - padY * 2;
 
                 const scale = Math.min(availW / STAR_VIEWBOX.width, availH / STAR_VIEWBOX.height);
-
+                
                 const drawW = STAR_VIEWBOX.width * scale;
                 const drawH = STAR_VIEWBOX.height * scale;
 
@@ -470,7 +500,6 @@
 
                 return {
                     scale,
-
                     offsetX,
                     offsetY
                 };
@@ -490,7 +519,10 @@
                 logo.style.left = `${center.x}px`;
                 logo.style.top = `${center.y}px`;
 
-                linkMap.forEach(({ el, point }) => {
+                linkMap.forEach(({
+                    el,
+                    point
+                }) => {
                     const p = toViewport(point, fit);
 
                     el.style.left = `${p.x}px`;
@@ -513,20 +545,21 @@
                     const p2 = toViewport(b, fit);
 
                     const ln = document.createElementNS(SVG_NS, "line");
-
+                    
                     ln.setAttribute("x1", p1.x);
                     ln.setAttribute("y1", p1.y);
-                    ln.setAttribute("x2", p1.x);
-                    ln.setAttribute("y2", p1.y);
+                    ln.setAttribute("x2", p2.x);
+                    ln.setAttribute("y2", p2.y);
 
                     linesContainer.appendChild(ln);
                 });
 
-                linkMap.forEach(({ point }) => {
+                linkMap.forEach(({
+                    point
+                }) => {
                     const p = toViewport(point, fit);
-
                     const spoke = document.createElementNS(SVG_NS, "line");
-
+                    
                     spoke.setAttribute("x1", center.x);
                     spoke.setAttribute("y1", center.y);
 
@@ -560,7 +593,7 @@
 
             logo.addEventListener("click", e => {
                 e.stopPropagation();
-
+                
                 overlay.classList.toggle("active");
             });
 
@@ -571,8 +604,7 @@
             });
 
             document.addEventListener("keydown", e => {
-                if (e.key === "Escape")
-                    overlay.classList.remove("active");
+                if (e.key === "Escape") overlay.classList.remove("active");
             });
 
             langButtons.forEach(btn => btn.addEventListener("click", () => setLanguage(btn.dataset.lang)));
