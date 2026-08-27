@@ -1,0 +1,22 @@
+# arquivos informativos de diretório de sistema operacional
+.DS_Store
+desktop.ini
+
+# node.js
+node_modules
+
+# build estática
+build
+
+# credenciais secretas
+.env
+.env.*
+!.env.example
+cookies.json
+keys.json
+
+# docker
+docker-compose.yml
+
+# ide
+.vscode
