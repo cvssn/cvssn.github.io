@@ -352,7 +352,14 @@
 
         <!-- parâmetros para adicionar ao carrinho -->
         <script id="wc-add-to-cart-js-extra">
-            var wc_add_to_cart_params = {"ajax_url":"/wp-admin/admin-ajax.php","wc_ajax_url":"/?wc-ajax=%%endpoint%%","i18n_view_cart":"View cart","cart_url":"https://ette.design/cart/","is_cart":"","cart_redirect_after_add":"yes"};
+            var wc_add_to_cart_params = {
+                "ajax_url": "/wp-admin/admin-ajax.php",
+                "wc_ajax_url": "/?wc-ajax=%%endpoint%%",
+                "i18n_view_cart": "view cart",
+                "cart_url": "https://cvssn.github.io/cart/",
+                "is_cart": "",
+                "cart_redirect_after_add": "yes"
+            };
             
             // # sourceurl = wc-add-to-cart-js-extra
         </script>
@@ -364,7 +371,9 @@
         <script data-wp-strategy="defer" defer id="wc-add-to-cart-js" src="https://cvssn.github.io/web/src/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js"></script>
 
         <script id="WCPAY_ASSETS-js-extra">
-            var wcpayAssets = {"url":"https://ette.design/wp-content/plugins/woocommerce-payments/dist/"};
+            var wcpayAssets = {
+                "url": "https://cvssn.github.io/web/src/plugins/woocommerce-payments/dist/"
+            };
 
             // # sourceurl = wcpay_assets-js-extra
         </script>
@@ -372,7 +381,31 @@
         <script data-wp-strategy="defer" defer fetchpriority="low" id="image_zoooom-js" src="https://cvssn.github.io/web/src/plugins/wp-image-zoooom/assets/js/jquery.image_zoom.min.js"></script>
 
         <script id="image_zoooom-init-js-extra">
-            var IZ = {"options":{"lensShape":"square","zoomType":"lens","lensSize":300,"borderSize":1,"borderColour":"#ffffff","cursor":"crosshair","lensFadeIn":500,"tint":"true","tintColour":"#ffffff","tintOpacity":0},"with_woocommerce":"0","exchange_thumbnails":"1","enable_mobile":"0","woo_categories":"0","woo_slider":"0","enable_surecart":"0"};
+            var IZ = {
+                "options": {
+                    "lensShape": "square",
+                    "zoomType": "lens",
+                    "lensSize": 300,
+                    
+                    "borderSize": 1,
+                    "borderColour": "#ffffff",
+                    
+                    "cursor": "crosshair",
+                    
+                    "lensFadeIn": 500,
+                    
+                    "tint": "true",
+                    "tintColour": "#ffffff",
+                    "tintOpacity": 0
+                },
+                
+                "with_woocommerce": "0",
+                "exchange_thumbnails": "1",
+                "enable_mobile": "0",
+                "woo_categories": "0",
+                "woo_slider": "0",
+                "enable_surecart": "0"
+            };
             
             // # sourceurl = image_zoooom-init-js-extra
         </script>
